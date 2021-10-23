@@ -14,8 +14,13 @@ public class PageController {
         return new ModelAndView("main");
     }
 
-    @GetMapping("/join")
-    public ModelAndView join(){
-        return new ModelAndView("join");
-    }
+//    @GetMapping("/join")
+//    public ModelAndView join(){
+//        return new ModelAndView("join");
+//    }
+//
+//    @GetMapping("/login")
+//    public ModelAndView login(){
+//        return new ModelAndView("login");
+//    }
 }
