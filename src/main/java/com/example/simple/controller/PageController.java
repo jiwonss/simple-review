@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/pages")
+@RequestMapping("/")
 public class PageController {
 
     @GetMapping("/main")
@@ -14,13 +14,13 @@ public class PageController {
         return new ModelAndView("main");
     }
 
-//    @GetMapping("/join")
-//    public ModelAndView join(){
-//        return new ModelAndView("join");
-//    }
-//
-//    @GetMapping("/login")
-//    public ModelAndView login(){
-//        return new ModelAndView("login");
-//    }
+    @GetMapping("/signup")
+    public ModelAndView join(){
+        return new ModelAndView("signup");
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login(){
+        return new ModelAndView("login");
+    }
 }
