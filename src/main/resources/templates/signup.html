@@ -35,19 +35,19 @@
     <div class="masthead-content">
         <div class="container w-25 h-75">
             <h1 class="mb-sm-4">Sign Up</h1>
-            <form>
+            <form action="/signup/new" method="post">
                 <div class="text-start">
                     <label class="form-label">ID</label>
-                    <input class="form-control mb-sm-4">
+                    <input class="form-control mb-sm-4" name="id">
 
                     <label class="form-label">Password</label>
-                    <input class="form-control mb-sm-4">
+                    <input class="form-control mb-sm-4" name="password">
 
                     <label class="form-label">Email</label>
-                    <input class="form-control mb-sm-4">
+                    <input class="form-control mb-sm-4" name="email">
 
                     <label class="form-label">Phone Number</label>
-                    <input class="form-control mb-sm-4">
+                    <input class="form-control mb-sm-4" name="phoneNumber">
                 </div>
                 <button class="btn-light" type="submit">Join</button>
             </form>
