@@ -18,29 +18,23 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long index;
 
-    @NotNull
+    @Column(nullable = false)
     private String name;
 
-    @NotNull
+    @Column(nullable = false)
     private String id;
 
-    @NotNull
+    @Column(nullable = false)
     private String password;
 
-    @NotNull
+    @Column(nullable = false)
     private String email;
 
-    @NotNull
-    private LocalDateTime created_at;
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updateAt;
+    private LocalDateTime updatedAt;
 
-    public UserEntity(String name, String id, String password, String email, LocalDateTime createdAt){
-        this.name = name;
-        this.id = id;
-        this.password = password;
-        this.email = email;
-        this.created_at = createdAt;
-    }
+
 
 }
