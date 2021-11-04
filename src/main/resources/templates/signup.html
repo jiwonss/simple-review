@@ -19,7 +19,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container px-5">
-        <a class="navbar-brand" href="/main">Simple Review</a>
+        <a class="navbar-brand" href="/">Simple Review</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
@@ -33,21 +33,18 @@
 <!-- Header-->
 <header class="masthead text-center text-white">
     <div class="masthead-content">
-        <div class="container w-25 h-75">
+        <div class="login container w-25">
             <h1 class="mb-sm-4">Sign Up</h1>
-            <form action="/signup/new" method="post">
+            <form method="post" th:action="@{/user}">
                 <div class="text-start">
-                    <label class="form-label">Name</label>
-                    <input class="form-control mb-sm-4" name="name">
-
-                    <label class="form-label">ID</label>
-                    <input class="form-control mb-sm-4" name="id">
+                    <label class="form-label">Email</label>
+                    <input name="email" class="form-control mb-sm-4">
 
                     <label class="form-label">Password</label>
-                    <input class="form-control mb-sm-4" name="password">
+                    <input name="password" class="form-control mb-sm-4">
 
-                    <label class="form-label">Email</label>
-                    <input class="form-control mb-sm-4" name="email">
+                    <input type="radio" name="auth" value="ROLE_ADMIN,ROLE_USER"> admin
+                    <input type="radio" name="auth" value="ROLE_USER" checked="checked"> user <br>
                 </div>
                 <button class="btn-light" type="submit">Join</button>
             </form>

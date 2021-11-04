@@ -1,40 +1,27 @@
 package com.example.simple.config;
 
+import com.example.simple.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@EnableWebSecurity(debug = true)
+@RequiredArgsConstructor
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                .withUser(
-                        User.withDefaultPasswordEncoder()
-                                .username("user1")
-                                .password("1111")
-                                .roles("USER")
-                ).withUser(
-                        User.withDefaultPasswordEncoder()
-                                .username("admin")
-                                .password("2222")
-                                .roles("ADMIN")
-                );
-
-    }
+    private final UserService userService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(request->{
                     request
-                            .antMatchers("/").permitAll()
+                            .antMatchers("/", "/login", "/signup", "/user").permitAll()
                             .anyRequest().authenticated()
                             ;
 
@@ -42,16 +29,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin(login->
                         login.loginPage("/login")
                                 .permitAll()
-                                .defaultSuccessUrl("/", false)
+                                .defaultSuccessUrl("/")
                                 .failureUrl("/login-error")
                 )
                 .logout(logout->
-                        logout.logoutSuccessUrl("/"))
+                        logout.logoutSuccessUrl("/")
+                                .invalidateHttpSession(true))
                 .exceptionHandling(error->
                         error.accessDeniedPage("/access-denied")
                 )
         ;
-                ;
     }
 
     @Override
@@ -60,6 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .requestMatchers(
                         PathRequest.toStaticResources().atCommonLocations()
                 );
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService)
+                .passwordEncoder(new BCryptPasswordEncoder());
+
     }
 
 }

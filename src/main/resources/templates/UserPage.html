@@ -20,6 +20,16 @@
     </div>
 
   </div>
+
+  ID : <span sec:authentication="name"></span> <br>
+  소유 권한 : <span sec:authentication="authorities"></span> <br>
+
+  <form id="logout" action="/logout" method="POST">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+    <input type="submit" value="로그아웃"/>
+  </form>
+
+
 </div>
 <script th:src="@{/js/bootstrap.js}" />
 </body>
