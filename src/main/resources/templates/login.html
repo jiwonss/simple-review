@@ -23,8 +23,16 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/signup">Sign Up</a></li>
-                <li class="nav-item"><a class="nav-link" href="login">LogIn</a></li>
+                <li class="nav-item"><a class="nav-link" href="/signup" sec:authorize="isAnonymous()">Sign Up</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login" sec:authorize="isAnonymous()">LogIn</a></li>
+                <li class="nav-item"><a class="nav-link" href="#" sec:authorize="isAuthenticated()"><span sec:authentication="name"></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="#" sec:authorize="isAuthenticated()">My Page</a></li>
+                <li class="nav-item">
+                    <form id="logout" action="/logout" method="POST">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <input class="logout nav-link" type="submit" value="로그아웃" sec:authorize="isAuthenticated()"/>
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -39,7 +47,7 @@
                 <div class="text-start">
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                     <label class="form-label">Email</label>
-                    <input type="text" name="username" class="form-control mb-sm-4">
+                    <input type="email" name="username" class="form-control mb-sm-4">
 
                     <label class="form-label">Password</label>
                     <input type="password" name="password" class="form-control mb-sm-4">
@@ -50,7 +58,7 @@
                         <input type="checkbox" name="remember-me"> 로그인 기억하기
                     </label>
                 </div>
-                <div class="error-message" th:if="${loginError}">
+                <div class="error-message" th:if="${param.error}">
                     <span> 아이디나 패스워드가 올바르지 않습니다. </span>
                 </div>
                 <button class="btn-light" type="submit">Login</button>

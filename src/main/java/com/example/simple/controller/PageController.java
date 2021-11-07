@@ -40,18 +40,6 @@ public class PageController {
         return "AccessDenied";
     }
 
-    @PreAuthorize("hasAnyAuthority('ROLE_USER')")
-    @GetMapping("/user-page")
-    public String userPage(){
-        return "UserPage";
-    }
-
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-    @GetMapping("/admin-page")
-    public String adminPage(){
-        return "AdminPage";
-    }
-
     @ResponseBody
     @GetMapping("/auth")
     public Authentication auth(){

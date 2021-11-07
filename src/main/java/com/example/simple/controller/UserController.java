@@ -22,12 +22,14 @@ public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
 
+    // 회원가입
     @PostMapping(value = "/user")
     public String signup(UserDto userDto){
         userService.save(userDto);
         return "redirect:/login";
     }
 
+    // 로그아웃
     @GetMapping(value = "/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
