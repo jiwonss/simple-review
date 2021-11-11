@@ -16,7 +16,7 @@ class NaverClientTest {
     @Test
     public void searchTest() {
         var search = new SearchLocalReq();
-        search.setQuery("갈비집");
+        search.setQuery("목포 맛집");
 
         var result = naverClient.searchLocal(search);
         System.out.println(result);

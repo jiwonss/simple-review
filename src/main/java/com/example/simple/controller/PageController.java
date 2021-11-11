@@ -1,5 +1,6 @@
 package com.example.simple.controller;
 
+import org.dom4j.rule.Mode;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -45,4 +46,15 @@ public class PageController {
     public Authentication auth(){
         return SecurityContextHolder.getContext().getAuthentication();
     }
+
+    @GetMapping("/restaurant")
+    public ModelAndView restaurant(){
+        return new ModelAndView("restaurant");
+    }
+
+    @GetMapping("/cafe")
+    public ModelAndView cafe(){
+        return new ModelAndView("cafe");
+    }
+
 }

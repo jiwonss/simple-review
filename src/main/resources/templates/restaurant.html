@@ -42,46 +42,15 @@
 <!-- Header-->
 <header class="masthead text-center text-white">
     <div class="masthead-content">
-        <div class="container px-5">
-            <h1 class="masthead-heading mb-0">Simple Review</h1>
-            <h2 class="masthead-subheading mb-0">Simple Review 작성하기</h2>
-            <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Go</a>
+        <div class="container w-25">
+            <form method="post" action="#">
+                <input type="text">
+                <button class="btn-light" type="submit">찾기</button>
+            </form>
         </div>
     </div>
 </header>
 
-<section id="scroll">
-    <div class="row px-5 align-item-center text-center ">
-        <div class="col-lg-6 order-lg-1">
-            <div class="p-5">
-                <a href="/restaurant"><h2 class="display-4">Restaurant</h2></a>
-            </div>
-        </div>
-        <div class="col-lg-6 order-lg-2">
-            <div class="p-5">
-                <a href="/cafe"><h2 class="display-4">Cafe</h2></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="row px-5 align-item-center text-center">
-        <div class="col-lg-6 order-lg-1">
-            <div class="p-5">
-                <a href="#"><h2 class="display-4">Movie</h2></a>
-            </div>
-        </div>
-        <div class="col-lg-6 order-lg-2">
-            <div class="p-5">
-                <a href="#"><h2 class="display-4">Music</h2></a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!--ID : <span sec:authentication="name"></span> <br>-->
-<!--소유 권한 : <span sec:authentication="authorities"></span> <br>-->
 
 <!-- Footer-->
 <footer class="py-5 bg-black">
