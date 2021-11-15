@@ -16,7 +16,7 @@ class NaverClientTest {
     @Test
     public void search(){
         var search = new SearchLocalReq();
-        search.setQuery("목포 맛집");
+        search.setQuery("목포 카페");
         var result = naverClient.searchLocal(search);
         System.out.println(result);
     }
@@ -24,7 +24,7 @@ class NaverClientTest {
     @Test
     public void searchImage(){
         var search = new SearchImageReq();
-        search.setQuery("카페");
+        search.setQuery("씨엘비베이커리");
         var result = naverClient.searchImage(search);
         System.out.println(result);
     }

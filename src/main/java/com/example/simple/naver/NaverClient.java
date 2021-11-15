@@ -38,7 +38,7 @@ public class NaverClient {
 
         var headers = new HttpHeaders();
         headers.set("X-Naver-Client-Id", naverClientId);
-        headers.set("X-naver-Client-Secret", naverClientSecret);
+        headers.set("X-Naver-Client-Secret", naverClientSecret);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         var httpEntity = new HttpEntity<>(headers);

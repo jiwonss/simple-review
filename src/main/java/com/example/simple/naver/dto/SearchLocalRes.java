@@ -20,7 +20,7 @@ public class SearchLocalRes {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    private static class SearchLocalItem {
+    public static class SearchLocalItem {
         private String title;
         private String link;
         private String category;
