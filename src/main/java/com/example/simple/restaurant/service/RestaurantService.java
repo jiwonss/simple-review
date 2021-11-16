@@ -1,14 +1,15 @@
-package com.example.simple.resaurant.service;
+package com.example.simple.restaurant.service;
 
 import com.example.simple.naver.NaverClient;
 import com.example.simple.naver.dto.SearchImageReq;
 import com.example.simple.naver.dto.SearchLocalReq;
-import com.example.simple.resaurant.dto.RestaurantDto;
-import com.example.simple.resaurant.entity.RestaurantEntity;
-import com.example.simple.resaurant.repository.RestaurantRepository;
+import com.example.simple.restaurant.dto.RestaurantDto;
+import com.example.simple.restaurant.entity.RestaurantEntity;
+import com.example.simple.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,15 +55,23 @@ public class RestaurantService {
         return new RestaurantDto();
     }
 
-    public RestaurantDto add(RestaurantDto restaurantDto){
-        var entity = dtoToEntity(restaurantDto);
-        var saveEntity = restaurantRepository.save(entity);
-        return entityToDto(saveEntity);
+    public RestaurantEntity add(RestaurantDto restaurantDto) {
+        var restaurant = RestaurantEntity.builder()
+                .title(restaurantDto.getTitle())
+                .category(restaurantDto.getCategory())
+                .address(restaurantDto.getAddress())
+                .roadAddress(restaurantDto.getRoadAddress())
+                .homePageLink(restaurantDto.getHomePageLink())
+                .imageLink(restaurantDto.getImageLink())
+                .isVisit(restaurantDto.isVisit())
+                .visitCount(restaurantDto.getVisitCount())
+                .lastVisitDate(restaurantDto.getLastVisitDate())
+                .build();
+        return restaurantRepository.save(restaurant);
     }
 
     private RestaurantEntity dtoToEntity(RestaurantDto restaurantDto) {
         var entity = new RestaurantEntity();
-        entity.setId(restaurantDto.getId());
         entity.setTitle(restaurantDto.getTitle());
         entity.setCategory(restaurantDto.getCategory());
         entity.setAddress(restaurantDto.getAddress());
@@ -77,7 +86,6 @@ public class RestaurantService {
 
     private RestaurantDto entityToDto(RestaurantEntity restaurantEntity) {
         var dto = new RestaurantDto();
-        dto.setId(restaurantEntity.getId());
         dto.setTitle(restaurantEntity.getTitle());
         dto.setCategory(restaurantEntity.getCategory());
         dto.setAddress(restaurantEntity.getAddress());
@@ -92,7 +100,7 @@ public class RestaurantService {
 
     public List<RestaurantDto> findAll(){
         return restaurantRepository.findAll().stream()
-                .map(it -> entityToDto(it))
+                .map(this::entityToDto)
                 .collect(Collectors.toList());
     }
 
@@ -106,6 +114,8 @@ public class RestaurantService {
             var item = restaurantItem.get();
             item.setVisit(true);
             item.setVisitCount(item.getVisitCount() + 1);
+            restaurantRepository.save(item);
+            System.out.println(item);
         }
     }
 }

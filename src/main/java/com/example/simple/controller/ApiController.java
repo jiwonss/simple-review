@@ -1,13 +1,15 @@
 package com.example.simple.controller;
 
-import com.example.simple.resaurant.dto.RestaurantDto;
-import com.example.simple.resaurant.service.RestaurantService;
+import com.example.simple.restaurant.dto.RestaurantDto;
+import com.example.simple.restaurant.entity.RestaurantEntity;
+import com.example.simple.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class ApiController {
 
@@ -15,12 +17,11 @@ public class ApiController {
 
     @GetMapping("/search")
     public RestaurantDto search(@RequestParam String query) {
-        System.out.println(query);
         return restaurantService.search(query);
     }
 
     @PostMapping("")
-    public RestaurantDto add(@RequestBody RestaurantDto restaurantDto){
+    public RestaurantEntity add(@RequestBody RestaurantDto restaurantDto){
         return restaurantService.add(restaurantDto);
     }
 
@@ -29,7 +30,7 @@ public class ApiController {
         return restaurantService.findAll();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id){
         restaurantService.delete(id);
     }
