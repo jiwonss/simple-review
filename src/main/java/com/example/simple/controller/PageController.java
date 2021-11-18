@@ -49,4 +49,9 @@ public class PageController {
     public ModelAndView restaurant() {
         return new ModelAndView("restaurant");
     }
+
+    @GetMapping("/index")
+    public ModelAndView index() {
+        return new ModelAndView("index");
+    }
 }
