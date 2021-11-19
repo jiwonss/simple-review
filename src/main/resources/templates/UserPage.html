@@ -1,36 +1,15 @@
-
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
-  <link rel="stylesheet" th:href="@{/css/index.css}">
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
 
-<div class="container center-contents">
-  <div class="row">
-    <h1 class="title display-5 text-success"> 유저 페이지 </h1>
-  </div>
-  <div class="links">
-
-    <div class="link">
-      <a href="/"> 메인 </a>
+<th:block layout:fragment="content">
+  <!-- Begin Page Content -->
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container w-50">
+      </div>
     </div>
-
-  </div>
-
-  ID : <span sec:authentication="name"></span> <br>
-  소유 권한 : <span sec:authentication="authorities"></span> <br>
-
-  <form id="logout" action="/logout" method="POST">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-    <input type="submit" value="로그아웃"/>
-  </form>
-
-
-</div>
-<script th:src="@{/js/bootstrap.js}" />
-</body>
+  </header>
+</th:block>
 </html>
