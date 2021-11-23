@@ -1,5 +1,8 @@
 package com.example.simple.controller;
 
+import com.example.simple.restaurant.dto.RestaurantDto;
+import com.example.simple.restaurant.service.RestaurantService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -9,9 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class PageController {
+
+    private final RestaurantService restaurantService;
 
     @GetMapping("/")
     public ModelAndView main() {
@@ -46,7 +55,10 @@ public class PageController {
     }
 
     @GetMapping("/restaurant")
-    public ModelAndView restaurant() {
+    public ModelAndView restaurant(Model model) {
+        List<RestaurantDto> restaurants = new ArrayList<>();
+        restaurants = restaurantService.findAll();
+        model.addAttribute("restaurants", restaurants);
         return new ModelAndView("restaurant");
     }
 

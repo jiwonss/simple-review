@@ -55,7 +55,7 @@ public class RestaurantService {
         return new RestaurantDto();
     }
 
-    public RestaurantEntity add(RestaurantDto restaurantDto) {
+    public RestaurantDto add(RestaurantDto restaurantDto) {
         var restaurant = RestaurantEntity.builder()
                 .title(restaurantDto.getTitle())
                 .category(restaurantDto.getCategory())
@@ -67,7 +67,8 @@ public class RestaurantService {
                 .visitCount(restaurantDto.getVisitCount())
                 .lastVisitDate(restaurantDto.getLastVisitDate())
                 .build();
-        return restaurantRepository.save(restaurant);
+        var saveEitity = restaurantRepository.save(restaurant);
+        return entityToDto(saveEitity);
     }
 
     private RestaurantEntity dtoToEntity(RestaurantDto restaurantDto) {
