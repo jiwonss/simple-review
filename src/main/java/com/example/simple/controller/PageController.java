@@ -7,9 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -55,11 +53,25 @@ public class PageController {
     }
 
     @GetMapping("/restaurant")
-    public ModelAndView restaurant(Model model) {
+    public ModelAndView restaurant() {
+        return new ModelAndView("restaurant");
+    }
+
+    @GetMapping("/restaurant/search")
+    public String restaurantSearch(@RequestParam String query, Model model) {
+        RestaurantDto result = restaurantService.search(query);
+        model.addAttribute("result", result);
+        model.addAttribute("resultTable", true);
+        return "restaurant";
+    }
+
+    @GetMapping("/restaurant/list")
+    public String restaurantList(Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
         restaurants = restaurantService.findAll();
         model.addAttribute("restaurants", restaurants);
-        return new ModelAndView("restaurant");
+        model.addAttribute("restaurantTable", true);
+        return "restaurant";
     }
 
     @GetMapping("/index")
