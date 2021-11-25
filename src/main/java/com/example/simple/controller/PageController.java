@@ -65,14 +65,25 @@ public class PageController {
         return "restaurant";
     }
 
+
     @GetMapping("/restaurant/list")
-    public String restaurantList(Model model) {
+    public ModelAndView restaurantList(Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
         restaurants = restaurantService.findAll();
         model.addAttribute("restaurants", restaurants);
-        model.addAttribute("restaurantTable", true);
-        return "restaurant";
+        return new ModelAndView("restaurant-list");
     }
+
+
+    @PostMapping("/restaurant/list")
+    public String restaurantAdd(Model model, RestaurantDto restaurantDto) {
+        restaurantService.add(restaurantDto);
+        List<RestaurantDto> restaurants = new ArrayList<>();
+        restaurants = restaurantService.findAll();
+        model.addAttribute("restaurants", restaurants);
+        return "restaurant-list";
+    }
+
 
     @GetMapping("/index")
     public ModelAndView index() {

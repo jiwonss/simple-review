@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <header class="masthead text-center text-white">
+        <div class="masthead-content">
+            <div class="container w-75">
+                <div class="container py-5">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>Title</td>
+                            <td>Category</td>
+                            <td>Address</td>
+                            <td>HomepageLink</td>
+                            <td>VisitCount</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="restaurant : ${restaurants}">
+                            <td><span th:text="${restaurant.title}"></span></td>
+                            <td><span th:text="${restaurant.category}"></span></td>
+                            <td><span th:text="${restaurant.address}"></span></td>
+                            <td><a th:href="${restaurant.homePageLink}"><span th:text="${restaurant.homePageLink}"></span></a></td>
+                            <td><span th:text="${restaurant.visitCount}"></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </header>
+</th:block>
+</html>

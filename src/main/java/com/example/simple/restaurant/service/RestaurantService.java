@@ -9,7 +9,6 @@ import com.example.simple.restaurant.repository.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,7 +54,7 @@ public class RestaurantService {
         return new RestaurantDto();
     }
 
-    public RestaurantDto add(RestaurantDto restaurantDto) {
+    public RestaurantEntity add(RestaurantDto restaurantDto) {
         var restaurant = RestaurantEntity.builder()
                 .title(restaurantDto.getTitle())
                 .category(restaurantDto.getCategory())
@@ -67,8 +66,7 @@ public class RestaurantService {
                 .visitCount(restaurantDto.getVisitCount())
                 .lastVisitDate(restaurantDto.getLastVisitDate())
                 .build();
-        var saveEitity = restaurantRepository.save(restaurant);
-        return entityToDto(saveEitity);
+        return restaurantRepository.save(restaurant);
     }
 
     private RestaurantEntity dtoToEntity(RestaurantDto restaurantDto) {

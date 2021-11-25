@@ -40,7 +40,20 @@
                             <td><span th:text="${result.category}"></span></td>
                             <td><span th:text="${result.address}"></span></td>
                             <td><a th:href="${result.homePageLink}"><span th:text="${result.homePageLink}"></span></a></td>
-                            <td><button class="btn btn-primary btn-sm">방문 추가</button></td>
+                            <td>
+                                <form method="post" th:action="@{/restaurant/list}">
+                                    <input type="hidden" th:value="${result.title}" name="title">
+                                    <input type="hidden" th:value="${result.category}" name="category">
+                                    <input type="hidden" th:value="${result.address}" name="address">
+                                    <input type="hidden" th:value="${result.roadAddress}" name="roadAddress">
+                                    <input type="hidden" th:value="${result.homePageLink}" name="homePageLink">
+                                    <input type="hidden" th:value="${result.imageLink}" name="imageLink">
+                                    <input type="hidden" th:value="${result.isVisit}" name="isVisit">
+                                    <input type="hidden" th:value="${result.visitCount}" name="visitCount">
+                                    <input type="hidden" th:value="${result.lastVisitDate}" name="lastVisitDate">
+                                    <button class="btn btn-primary btn-sm">방문 추가</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
