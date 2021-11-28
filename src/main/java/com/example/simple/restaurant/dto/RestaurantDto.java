@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RestaurantDto {
 
+    private long id;
     private String title;
     private String category;
     private String address;

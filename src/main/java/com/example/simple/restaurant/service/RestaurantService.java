@@ -85,6 +85,7 @@ public class RestaurantService {
 
     private RestaurantDto entityToDto(RestaurantEntity restaurantEntity) {
         var dto = new RestaurantDto();
+        dto.setId(restaurantEntity.getId());
         dto.setTitle(restaurantEntity.getTitle());
         dto.setCategory(restaurantEntity.getCategory());
         dto.setAddress(restaurantEntity.getAddress());
@@ -114,7 +115,6 @@ public class RestaurantService {
             item.setVisit(true);
             item.setVisitCount(item.getVisitCount() + 1);
             restaurantRepository.save(item);
-            System.out.println(item);
         }
     }
 }

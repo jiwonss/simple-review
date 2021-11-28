@@ -12,20 +12,49 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <td>Id</td>
                             <td>Title</td>
                             <td>Category</td>
                             <td>Address</td>
                             <td>HomepageLink</td>
                             <td>VisitCount</td>
+                            <td>Delete</td>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="restaurant : ${restaurants}">
+                        <tr class="list" th:classappend="${restaurant.id}" th:each="restaurant : ${restaurants}">
+                            <td><span th:text="${restaurant.id}"></span></td>
                             <td><span th:text="${restaurant.title}"></span></td>
                             <td><span th:text="${restaurant.category}"></span></td>
                             <td><span th:text="${restaurant.address}"></span></td>
                             <td><a th:href="${restaurant.homePageLink}"><span th:text="${restaurant.homePageLink}"></span></a></td>
-                            <td><span th:text="${restaurant.visitCount}"></span></td>
+                            <td>
+                                <span class="m-5" th:text="${restaurant.visitCount}"></span>
+                                <button class="btn btn-primary btn-sm" th:onclick="|addBtnClick('${restaurant.id}');|">추가</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" th:onclick="|delBtnClick('${restaurant.id}');|">삭제</button>
+                            </td>
+                            <script>
+                                function addBtnClick(id) {
+                                    fetch(`http://localhost:8080/restaurant/api/${id}`, {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                    })
+                                        .then((data) => console.log(data));
+                                }
+
+                                function delBtnClick(id) {
+                                    fetch(`http://localhost:8080/restaurant/api/delete/${id}`, {
+                                        method: "DELETE",
+                                    })
+                                        .then((data) => console.log(data));
+                                }
+
+                            </script>
+
                         </tr>
                         </tbody>
                     </table>

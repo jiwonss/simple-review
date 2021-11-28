@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(request->{
                     request
-                            .antMatchers("/**", "/signup", "/login", "/restaurant/**", "/api/**").permitAll()
+                            .antMatchers("/**", "/signup", "/login", "/restaurant/**").permitAll()
                             .antMatchers("/swagger-ui.html", "/swagger-ui/**").hasRole("VIEW")
                             .anyRequest().authenticated()
                             ;
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling(error->
                         error.accessDeniedPage("/access-denied")
                 )
-                .csrf().ignoringAntMatchers("/api/**")
+                .csrf().ignoringAntMatchers("/restaurant/api/**")
         ;
     }
 
