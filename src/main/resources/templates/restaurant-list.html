@@ -57,6 +57,8 @@
                                 method: "DELETE",
                             })
                                 .then((data) => console.log(data));
+                            const list = document.querySelector(`tr.list[id=list${id}]`);
+                            list.remove();
                         }
                     </script>
                 </div>
