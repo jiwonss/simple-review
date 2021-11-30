@@ -54,7 +54,7 @@ public class RestaurantService {
         return new RestaurantDto();
     }
 
-    public RestaurantEntity add(RestaurantDto restaurantDto) {
+    public RestaurantDto add(RestaurantDto restaurantDto) {
         var restaurant = RestaurantEntity.builder()
                 .title(restaurantDto.getTitle())
                 .category(restaurantDto.getCategory())
@@ -66,11 +66,22 @@ public class RestaurantService {
                 .visitCount(restaurantDto.getVisitCount())
                 .lastVisitDate(restaurantDto.getLastVisitDate())
                 .build();
-        return restaurantRepository.save(restaurant);
+
+        var saveEntity = new RestaurantEntity();
+        if (restaurantRepository.existsByTitle(restaurant.getTitle())){
+            var id = restaurantRepository.findByTitle(restaurant.getTitle()).getId();
+            var findEntity = restaurantRepository.findById(id).get();
+            saveEntity = restaurantRepository.save(findEntity);
+        }
+        else {
+            saveEntity = restaurantRepository.save(restaurant);
+        }
+        return entityToDto(saveEntity);
     }
 
     private RestaurantEntity dtoToEntity(RestaurantDto restaurantDto) {
         var entity = new RestaurantEntity();
+        entity.setId(restaurantDto.getId());
         entity.setTitle(restaurantDto.getTitle());
         entity.setCategory(restaurantDto.getCategory());
         entity.setAddress(restaurantDto.getAddress());

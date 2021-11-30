@@ -1,7 +1,6 @@
 package com.example.simple.controller;
 
 import com.example.simple.restaurant.dto.RestaurantDto;
-import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ public class ApiController {
     }
 
     @PostMapping("")
-    public RestaurantEntity add(@RequestBody RestaurantDto restaurantDto){
+    public RestaurantDto add(@RequestBody RestaurantDto restaurantDto){
         return restaurantService.add(restaurantDto);
     }
 
