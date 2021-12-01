@@ -35,6 +35,9 @@
                             <td class="delete">
                                 <button class="btn btn-primary btn-sm" th:onclick="|delBtnClick('${restaurant.id}');|">삭제</button>
                             </td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" onclick="reviewClick();">리뷰 작성</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -59,6 +62,13 @@
                                 .then((data) => console.log(data));
                             const list = document.querySelector(`tr.list[id=list${id}]`);
                             list.remove();
+                        }
+
+                        function reviewClick() {
+                            var url = "/write";
+                            var name = "popup test";
+                            var option = "width = 500, height = 500, top = 100, left = 200, location = no"
+                            window.open(url, name, option);
                         }
                     </script>
                 </div>

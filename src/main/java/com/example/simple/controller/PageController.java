@@ -84,6 +84,11 @@ public class PageController {
         return "restaurant-list";
     }
 
+    @GetMapping("/write")
+    public ModelAndView write() {
+        return new ModelAndView("write");
+    }
+
 
     @GetMapping("/index")
     public ModelAndView index() {
