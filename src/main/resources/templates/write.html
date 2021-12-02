@@ -8,13 +8,27 @@
   <header class="masthead text-center text-white">
     <div class="masthead-content">
         <div class="container">
-          <form>
-            <input class="form-control p-5" type="text">
-            <button class="btn btn-primary m-xxl-4">저장</button>
-          </form>
+            <input class="content form-control p-5" type="text">
+            <button class="btn btn-primary m-xxl-4" type="button" onclick="saveBtn();">저장</button>
         </div>
     </div>
   </header>
+
+  <script>
+    function saveBtn() {
+        const review = document.querySelector(".content").value;
+        fetch(`http://localhost:8080/review/api/add`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              content : `${review}`,
+            }),
+        })
+            .then((data) => console.log(data));
+    }
+  </script>
 </th:block>
 </html>
 

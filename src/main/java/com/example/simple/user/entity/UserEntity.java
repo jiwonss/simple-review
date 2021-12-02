@@ -18,9 +18,9 @@ import java.util.Set;
 public class UserEntity implements UserDetails {
 
     @Id
-    @Column(name = "code")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long code;
+    private Long id;
 
     @Column(name = "email", unique = true, nullable = false)
     private String email;
