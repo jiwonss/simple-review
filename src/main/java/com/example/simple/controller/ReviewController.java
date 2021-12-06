@@ -1,5 +1,6 @@
 package com.example.simple.controller;
 
+import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.review.entity.ReviewEntity;
 import com.example.simple.review.service.ReviewService;
@@ -14,7 +15,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping("/add")
-    public ReviewEntity add(@RequestBody ReviewDto reviewDto) {
+    public ReviewDto add(@RequestBody ReviewDto reviewDto) {
         return reviewService.add(reviewDto);
     }
 }

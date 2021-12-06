@@ -85,7 +85,8 @@ public class PageController {
     }
 
     @GetMapping("/write")
-    public ModelAndView write() {
+    public ModelAndView write(@RequestParam String title, Model model) {
+        model.addAttribute("title", title);
         return new ModelAndView("write");
     }
 

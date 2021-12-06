@@ -36,7 +36,10 @@
                                 <button class="btn btn-primary btn-sm" th:onclick="|delBtnClick('${restaurant.id}');|">삭제</button>
                             </td>
                             <td>
-                                <button class="btn btn-primary btn-sm" onclick="reviewClick();">리뷰 작성</button>
+                                <form method="get" th:action="@{/write}">
+                                    <input type="hidden" name="title" th:value="${restaurant.title}">
+                                    <button class="btn btn-primary btn-sm">리뷰 작성</button>
+                                </form>
                             </td>
                         </tr>
                         </tbody>
@@ -64,9 +67,9 @@
                             list.remove();
                         }
 
-                        function reviewClick() {
-                            var url = "/write";
-                            var name = "popup test";
+                        function reviewClick(id) {
+                            var url = `/write/{id}`;
+                            var name = "review";
                             var option = "width = 500, height = 500, top = 100, left = 200, location = no"
                             window.open(url, name, option);
                         }

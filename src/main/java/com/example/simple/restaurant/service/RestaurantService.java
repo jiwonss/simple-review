@@ -6,8 +6,13 @@ import com.example.simple.naver.dto.SearchLocalReq;
 import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.repository.RestaurantRepository;
+import com.example.simple.user.dto.UserDto;
+import com.example.simple.user.entity.UserEntity;
+import com.example.simple.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +23,8 @@ public class RestaurantService {
 
     private final NaverClient naverClient;
     private final RestaurantRepository restaurantRepository;
+    private final UserRepository userRepository;
+
 
     public RestaurantDto search(String query) {
         // 지역 검색
@@ -54,7 +61,15 @@ public class RestaurantService {
         return new RestaurantDto();
     }
 
+    public UserEntity getUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserEntity userEntity = (UserEntity)principal;
+        return userRepository.findByEmail(userEntity.getEmail()).get();
+    }
+
     public RestaurantDto add(RestaurantDto restaurantDto) {
+        var user = getUser();
+
         var restaurant = RestaurantEntity.builder()
                 .title(restaurantDto.getTitle())
                 .category(restaurantDto.getCategory())
@@ -66,6 +81,9 @@ public class RestaurantService {
                 .visitCount(restaurantDto.getVisitCount())
                 .lastVisitDate(restaurantDto.getLastVisitDate())
                 .build();
+
+        restaurant.setUser(user);
+        user.getRestaurants().add(restaurant);
 
         var saveEntity = new RestaurantEntity();
         if (restaurantRepository.existsByTitle(restaurant.getTitle())){

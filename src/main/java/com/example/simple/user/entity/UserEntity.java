@@ -1,14 +1,13 @@
 package com.example.simple.user.entity;
 
+import com.example.simple.restaurant.entity.RestaurantEntity;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -30,6 +29,9 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "auth")
     private String auth;
+
+    @OneToMany(mappedBy = "user")
+    private List<RestaurantEntity> restaurants = new ArrayList<>();
 
     @Builder
     public UserEntity(String email, String password, String auth){

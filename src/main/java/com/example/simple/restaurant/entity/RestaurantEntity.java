@@ -1,12 +1,13 @@
 package com.example.simple.restaurant.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.simple.review.entity.ReviewEntity;
+import com.example.simple.user.entity.UserEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -47,6 +48,14 @@ public class RestaurantEntity {
 
     @Column(name = "lastvisitdate")
     private LocalDateTime lastVisitDate;
+
+    @ManyToOne
+    @JoinColumn(name = "u_id")
+    private UserEntity user;
+
+    @OneToMany(mappedBy = "restaurant")
+    private List<ReviewEntity> reviews = new ArrayList<>();
+
 
     public RestaurantEntity(String title, String category, String address, String roadAddress, String homePageLink, String imageLink, boolean isVisit, int visitCount, LocalDateTime lastVisitDate) {
         this.title = title;

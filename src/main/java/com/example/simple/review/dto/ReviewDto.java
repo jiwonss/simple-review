@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class ReviewDto {
 
     private String content;
-
+    private String title;
 }

@@ -1,5 +1,6 @@
 package com.example.simple.review.entity;
 
+import com.example.simple.restaurant.entity.RestaurantEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,6 +22,10 @@ public class ReviewEntity {
 
     @Column(name = "content", nullable = false)
     private String content;
+
+    @ManyToOne
+    @JoinColumn(name = "r_id")
+    private RestaurantEntity restaurant;
 
     @Builder
     public ReviewEntity(String content) {
