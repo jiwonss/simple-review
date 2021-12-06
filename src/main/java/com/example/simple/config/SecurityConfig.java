@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RequiredArgsConstructor
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling(error->
                         error.accessDeniedPage("/access-denied")
                 )
-                .csrf().ignoringAntMatchers("/restaurant/api/**", "/review/api/**")
+                .csrf().ignoringAntMatchers("/api/**")
         ;
     }
 

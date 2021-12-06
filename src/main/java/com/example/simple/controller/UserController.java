@@ -1,8 +1,10 @@
 package com.example.simple.controller;
 
 import com.example.simple.user.dto.UserDto;
+import com.example.simple.user.entity.UserEntity;
 import com.example.simple.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ public class UserController {
     private final UserService userService;
 
     // 회원가입
-    @PostMapping(value = "/user")
+    @PostMapping(value = "/new")
     public String signup(UserDto userDto){
         userService.save(userDto);
         return "redirect:/login";

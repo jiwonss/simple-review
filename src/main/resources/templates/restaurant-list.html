@@ -43,7 +43,7 @@
                     </table>
                     <script>
                         function addBtnClick(id) {
-                            fetch(`http://localhost:8080/restaurant/api/${id}`, {
+                            fetch(`http://localhost:8080/api/restaurant/${id}`, {
                                 method: "POST",
                                 headers: {
                                     "Content-Type": "application/json",
@@ -56,7 +56,7 @@
                         }
 
                         function delBtnClick(id) {
-                            fetch(`http://localhost:8080/restaurant/api/delete/${id}`, {
+                            fetch(`http://localhost:8080/api/restaurant/delete/${id}`, {
                                 method: "DELETE",
                             })
                                 .then((data) => console.log(data));
