@@ -2,6 +2,8 @@ package com.example.simple.controller;
 
 import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.service.RestaurantService;
+import com.example.simple.review.dto.ReviewDto;
+import com.example.simple.review.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +21,7 @@ import java.util.List;
 public class PageController {
 
     private final RestaurantService restaurantService;
+    private final ReviewService reviewService;
 
     @GetMapping("/")
     public ModelAndView main() {
@@ -65,7 +68,6 @@ public class PageController {
         return "restaurant";
     }
 
-
     @GetMapping("/restaurant/list")
     public ModelAndView restaurantList(Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
@@ -88,6 +90,13 @@ public class PageController {
     public ModelAndView write(@RequestParam String title, Model model) {
         model.addAttribute("title", title);
         return new ModelAndView("write");
+    }
+
+    @GetMapping("/review")
+    public ModelAndView reviewList(Model model) {
+        List<ReviewDto> reviews = reviewService.findAll();
+        model.addAttribute("reviews", reviews);
+        return new ModelAndView("review-list");
     }
 
 

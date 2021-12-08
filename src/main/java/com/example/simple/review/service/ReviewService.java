@@ -1,5 +1,6 @@
 package com.example.simple.review.service;
 
+import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.repository.RestaurantRepository;
 import com.example.simple.review.dto.ReviewDto;
@@ -7,6 +8,9 @@ import com.example.simple.review.entity.ReviewEntity;
 import com.example.simple.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +33,15 @@ public class ReviewService {
 
     public ReviewDto entityToDto(ReviewEntity reviewEntity) {
         ReviewDto reviewDto = new ReviewDto();
+        reviewDto.setId(reviewEntity.getId());
         reviewDto.setContent(reviewEntity.getContent());
+        reviewDto.setTitle(reviewEntity.getRestaurant().getTitle());
         return reviewDto;
+    }
+
+    public List<ReviewDto> findAll(){
+        return reviewRepository.findAll().stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
     }
 }
