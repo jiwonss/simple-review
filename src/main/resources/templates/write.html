@@ -6,32 +6,15 @@
 <th:block layout:fragment="content">
   <!-- Begin Page Content -->
   <header class="masthead text-center text-white">
-    <div class="masthead-content">
-        <div class="container">
-            <span th:text="${title}"></span>
-            <input class="content form-control p-5" type="text">
-            <button class="btn btn-primary m-xxl-4" type="button" th:onclick="saveBtn([[${title}]]);">저장</button>
-        </div>
-    </div>
+      <div class="masthead-content">
+          <div class="container">
+              <span th:text="${title}"></span>
+              <input class="content form-control p-5" type="text">
+              <button class="btn btn-primary m-xxl-4" type="button" th:onclick="saveBtn([[${title}]]);">저장</button>
+          </div>
+      </div>
   </header>
-
-  <script>
-    function saveBtn(title) {
-        console.log(`${title}`);
-        const review = document.querySelector(".content").value;
-        fetch(`http://localhost:8080/api/review/add`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              content : `${review}`,
-              title : `${title}`,
-            }),
-        })
-            .then((data) => console.log(data));
-    }
-  </script>
+  <script src="/js/write.js"></script>
 </th:block>
 </html>
 
