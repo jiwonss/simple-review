@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+
+<th:block layout:fragment="content">
+    <!-- Begin Page Content -->
+    <header class="masthead text-center text-white">
+        <div class="masthead-content">
+            <h1 class="masthead-subheading">Simple Review</h1>
+            <div class="review container px-5 py-5  d-grid ">
+                <th:block th:each="review : ${reviews}">
+                    <div th:id="'list' + ${restaurant.id}" class="p-4 border border-light border-3 m-4">
+                        <h3 class="my-4" th:text="${review.title}"></h3>
+                        <div class="content my-4">
+                            <span th:text="${review.content}"></span>
+                        </div>
+                        <div class="my-1">
+                            <button class="btn btn-primary btn-sm" >수정</button>
+                            <button class="btn btn-primary btn-sm" >삭제</button>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </header>
+    <script src="/js/review-list.js"></script>
+</th:block>
+</html>
