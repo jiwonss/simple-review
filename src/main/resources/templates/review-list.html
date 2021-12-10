@@ -10,14 +10,15 @@
             <h1 class="masthead-subheading">Simple Review</h1>
             <div class="review container px-5 py-5  d-grid ">
                 <th:block th:each="review : ${reviews}">
-                    <div th:id="'list' + ${restaurant.id}" class="p-4 border border-light border-3 m-4">
-                        <h3 class="my-4" th:text="${review.title}"></h3>
+                    <div th:id="'list' + ${review.id}" class="p-4 border border-light border-3 m-4">
+                        <h3 id="title" class="my-4" th:text="${review.title}"></h3>
                         <div class="content my-4">
+                            <input class="mx-auto p-0 border-0" type="text" style="display:none;">
                             <span th:text="${review.content}"></span>
                         </div>
-                        <div class="my-1">
-                            <button class="btn btn-primary btn-sm" >수정</button>
-                            <button class="btn btn-primary btn-sm" >삭제</button>
+                        <div class="button my-1">
+                            <button class="edit btn btn-primary btn-sm" th:onclick="|editBtnClick('${review.id}');|">수정</button>
+                            <button class="del btn btn-primary btn-sm"th:onclick="|delBtnClick('${review.id}');|">삭제</button>
                         </div>
                     </div>
                 </th:block>

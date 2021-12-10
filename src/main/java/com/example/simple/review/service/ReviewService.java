@@ -44,4 +44,14 @@ public class ReviewService {
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
     }
+
+    public void delete(Long id) {
+        reviewRepository.deleteById(id);
+    }
+
+    public void edit(ReviewDto reviewDto) {
+        var review = reviewRepository.findById(reviewDto.getId()).get();
+        review.setContent(reviewDto.getContent());
+        reviewRepository.save(review);
+    }
 }
