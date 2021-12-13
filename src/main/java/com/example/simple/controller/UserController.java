@@ -1,21 +1,19 @@
 package com.example.simple.controller;
 
 import com.example.simple.user.dto.UserDto;
-import com.example.simple.user.entity.UserEntity;
 import com.example.simple.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class UserController {
 
     private final UserService userService;
@@ -31,12 +29,6 @@ public class UserController {
     @GetMapping(value = "/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
-        return "redirect:/login";
+        return "redirect:/";
     }
-
-    @GetMapping("/email")
-    public String currentUserEmail(@AuthenticationPrincipal UserEntity userEntity) {
-        return userEntity.getEmail();
-    }
-
 }

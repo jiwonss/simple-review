@@ -50,12 +50,12 @@ public class RestaurantEntity {
     private LocalDateTime lastVisitDate;
 
     @ManyToOne
-    @JoinColumn(name = "u_id")
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
+    @Builder.Default
     @OneToMany(mappedBy = "restaurant")
     private List<ReviewEntity> reviews = new ArrayList<>();
-
 
     public RestaurantEntity(String title, String category, String address, String roadAddress, String homePageLink, String imageLink, boolean isVisit, int visitCount, LocalDateTime lastVisitDate) {
         this.title = title;

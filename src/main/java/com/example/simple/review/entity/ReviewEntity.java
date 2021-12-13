@@ -24,7 +24,7 @@ public class ReviewEntity {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "r_id")
+    @JoinColumn(name = "restaurant_id")
     private RestaurantEntity restaurant;
 
     @Builder
