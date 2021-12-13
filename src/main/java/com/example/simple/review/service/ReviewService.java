@@ -1,6 +1,5 @@
 package com.example.simple.review.service;
 
-import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.repository.RestaurantRepository;
 import com.example.simple.review.dto.ReviewDto;
@@ -9,6 +8,7 @@ import com.example.simple.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +18,6 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final RestaurantRepository restaurantRepository;
-
 
     public ReviewDto add(ReviewDto reviewDto) {
         var restaurant = restaurantRepository.findByTitle(reviewDto.getTitle());
@@ -43,6 +42,21 @@ public class ReviewService {
         return reviewRepository.findAll().stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    public List<ReviewDto> findAllByRestaurantId(Long id) {
+        return reviewRepository.findAllByRestaurantId(id).stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ReviewDto> findAllByUser(Long id) {
+        List<RestaurantEntity> restaurants = restaurantRepository.findAllByUserId(id);
+        List<ReviewDto> reviews = new ArrayList<>();
+        for (RestaurantEntity restaurant : restaurants) {
+            reviews.addAll(restaurant.getReviews().stream().map(this::entityToDto).collect(Collectors.toList()));
+        }
+        return reviews;
     }
 
     public void delete(Long id) {

@@ -6,13 +6,12 @@ import com.example.simple.naver.dto.SearchLocalReq;
 import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.repository.RestaurantRepository;
-import com.example.simple.user.dto.UserDto;
+import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.user.entity.UserEntity;
 import com.example.simple.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -131,6 +130,16 @@ public class RestaurantService {
         return restaurantRepository.findAll().stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    public List<RestaurantDto> findAllByUser(Long id) {
+        return restaurantRepository.findAllByUserId(id).stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<RestaurantEntity> findAllByUserEntity(Long id){
+        return restaurantRepository.findAllByUserId(id);
     }
 
     public void delete(Long id){

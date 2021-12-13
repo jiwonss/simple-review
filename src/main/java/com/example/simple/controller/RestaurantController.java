@@ -29,6 +29,11 @@ public class RestaurantController {
         return restaurantService.findAll();
     }
 
+    @GetMapping("/all/{id}")
+    public List<RestaurantDto> findAllByUserId(@RequestParam Long id) {
+        return restaurantService.findAllByUser(id);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id){
         restaurantService.delete(id);

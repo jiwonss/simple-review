@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(request->{
                     request
-                            .antMatchers("/**", "/signup", "/login", "/restaurant/**", "/review/**").permitAll()
+                            .antMatchers("/**", "/signup", "/login").permitAll()
                             .antMatchers("/swagger-ui.html", "/swagger-ui/**").hasRole("VIEW")
                             .anyRequest().authenticated()
                             ;

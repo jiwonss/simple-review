@@ -1,11 +1,14 @@
 package com.example.simple.controller;
 
 import com.example.simple.restaurant.dto.RestaurantDto;
+import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.service.RestaurantService;
 import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.review.service.ReviewService;
+import com.example.simple.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,19 +72,21 @@ public class PageController {
     }
 
     @GetMapping("/restaurant/list")
-    public ModelAndView restaurantList(Model model) {
+    public ModelAndView restaurantList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
-        restaurants = restaurantService.findAll();
-        model.addAttribute("restaurants", restaurants);
+        if (userEntity != null){
+            restaurants = restaurantService.findAllByUser(userEntity.getId());
+            model.addAttribute("restaurants", restaurants);
+        }
         return new ModelAndView("restaurant-list");
     }
 
-
     @PostMapping("/restaurant/list")
     public String restaurantAdd(Model model, RestaurantDto restaurantDto) {
+        var id = restaurantService.getUser().getId();
         restaurantService.add(restaurantDto);
         List<RestaurantDto> restaurants = new ArrayList<>();
-        restaurants = restaurantService.findAll();
+        restaurants = restaurantService.findAllByUser(id);
         model.addAttribute("restaurants", restaurants);
         return "restaurant-list";
     }
@@ -93,12 +98,14 @@ public class PageController {
     }
 
     @GetMapping("/review")
-    public ModelAndView reviewList(Model model) {
-        List<ReviewDto> reviews = reviewService.findAll();
-        model.addAttribute("reviews", reviews);
+    public ModelAndView reviewList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
+        List<ReviewDto> reviews = new ArrayList<>();
+        if (userEntity != null) {
+            reviews = reviewService.findAllByUser(userEntity.getId());
+            model.addAttribute("reviews", reviews);
+        }
         return new ModelAndView("review-list");
     }
-
 
     @GetMapping("/index")
     public ModelAndView index() {
