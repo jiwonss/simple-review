@@ -8,7 +8,7 @@
     <header class="masthead text-center text-white">
         <div class="masthead-content">
             <h1 class="masthead-subheading">Simple Review</h1>
-            <div class="review container px-5 py-5  d-grid ">
+            <div class="grid-columns-2 container px-5 py-5  d-grid">
                 <th:block th:each="review : ${reviews}">
                     <div th:id="'list' + ${review.id}" class="p-4 border border-light border-3 m-4">
                         <h3 id="title" class="my-4" th:text="${review.title}"></h3>
