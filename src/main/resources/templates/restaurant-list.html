@@ -12,7 +12,6 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <td>Id</td>
                             <td>Title</td>
                             <td>Category</td>
                             <td>Address</td>
@@ -23,7 +22,6 @@
                         </thead>
                         <tbody>
                         <tr th:id="'list' + ${restaurant.id}" class="list" th:each="restaurant : ${restaurants}">
-                            <td><span th:text="${restaurant.id}"></span></td>
                             <td><span th:text="${restaurant.title}"></span></td>
                             <td><span th:text="${restaurant.category}"></span></td>
                             <td><span th:text="${restaurant.address}"></span></td>
