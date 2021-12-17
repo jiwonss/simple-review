@@ -19,21 +19,21 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">프로젝트</a>
+      <a href="#프로젝트">프로젝트</a>
       <ul>
-        <li><a href="#built-with">목적</a></li>
-        <li><a href="#built-with">설명</a></li>
-        <li><a href="#built-with">개발 환경</a></li>
+        <li><a href="#목적">목적</a></li>
+        <li><a href="#설명">설명</a></li>
+        <li><a href="#개발 환경">개발 환경</a></li>
       </ul>
     </li>
     <li>
-      <a href="#about-the-project">사용법</a>
+      <a href="#사용법">사용법</a>
       <ul>
-        <li><a href="#built-with">기능</a></li>
+        <li><a href="#기능">기능</a></li>
       </ul>
     </li>
     <li>
-      <a href="#about-the-project">로드맵</a>
+      <a href="#로드맵">로드맵</a>
     </li>
   </ol>
 </details>
