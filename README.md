@@ -77,6 +77,6 @@
 
 <!-- ROADMAP -->
 ## 로드맵
-- [] README 수정
+- [X] README 수정
 
 <p align="right">(<a href="#top">back to top</a>)</p>
