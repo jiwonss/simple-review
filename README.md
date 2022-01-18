@@ -65,11 +65,11 @@
   |**Logout**|<img src="https://user-images.githubusercontent.com/72875528/148559632-83eb80d8-da64-4ea4-8e76-a8d4be31b39a.PNG"><div>로그인</div>|<img src="https://user-images.githubusercontent.com/72875528/148559634-4ce6f2fb-a2d0-4516-a88f-5c522e0cf80d.PNG"><div>로그아웃</div>|
   |**Restaurant List**|<img src="https://user-images.githubusercontent.com/72875528/148559627-bfff1611-9945-4d8f-9434-04d3ac50bb86.PNG"><div>Restaurant List</div>|-|
   |**Restaurant Visit Count**|<img src="https://user-images.githubusercontent.com/72875528/148559627-bfff1611-9945-4d8f-9434-04d3ac50bb86.PNG"><div>Visit Count 추가 전</div>|<img src="https://user-images.githubusercontent.com/72875528/148559630-f12b603e-af67-4803-9965-9a58f3a06b46.PNG"><div>Visit Count 추가 후</div>|
-  |**Restaurant Delete**|<img src="https://user-images.githubusercontent.com/72875528/148559630-f12b603e-af67-4803-9965-9a58f3a06b46.PNG"><div>Restaurant List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559629-b20e251a-6fbb-4c0c-af9b-a24c36b1c94e.PNG"><div>Restaurant List Delete 후</div>|
+  |**Restaurant 삭제**|<img src="https://user-images.githubusercontent.com/72875528/148559630-f12b603e-af67-4803-9965-9a58f3a06b46.PNG"><div>Restaurant List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559629-b20e251a-6fbb-4c0c-af9b-a24c36b1c94e.PNG"><div>Restaurant List 삭제 후</div>|
   |**Review List**|<img src="https://user-images.githubusercontent.com/72875528/148559641-784fcbe5-bb24-48fd-9d98-f62ecedbe9d1.PNG"><div>Restaurant List</div>|-|
-  |**Review 작성**|<img src="https://user-images.githubusercontent.com/72875528/148559638-0a2be7a7-a653-4be1-aaa2-6c5e5b4e927d.PNG"><div>Reveiw Write 페이지</div>|-|
-  |**Review 수정**|<img src="https://user-images.githubusercontent.com/72875528/148559641-784fcbe5-bb24-48fd-9d98-f62ecedbe9d1.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List Modify 후</div>|
-  |**Review 삭제**|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559645-30f9e36e-9db6-4778-9fac-251970ebfb01.PNG"><div>Review List Delete 후</div>|
+  |**Review 작성**|<img src="https://user-images.githubusercontent.com/72875528/148559638-0a2be7a7-a653-4be1-aaa2-6c5e5b4e927d.PNG"><div>Reveiw 작성 페이지</div>|-|
+  |**Review 수정**|<img src="https://user-images.githubusercontent.com/72875528/148559641-784fcbe5-bb24-48fd-9d98-f62ecedbe9d1.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List 수정 후</div>|
+  |**Review 삭제**|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559645-30f9e36e-9db6-4778-9fac-251970ebfb01.PNG"><div>Review List 삭제 후</div>|
   
 </div>
 
@@ -78,6 +78,5 @@
 <!-- ROADMAP -->
 ## 로드맵
 - [X] README 수정
-- [ ] 로그인 방식 변경
 
 <p align="right">(<a href="#top">back to top</a>)</p>
