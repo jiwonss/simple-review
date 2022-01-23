@@ -5,15 +5,26 @@
 
 <th:block layout:fragment="content">
     <!-- Begin Page Content -->
-    <header class="masthead text-center text-white">
-        <div class="masthead-content">
-            <div class="container w-75">
-                <div class="container py-5">
-
+    <header class="masthead text-center text-white h-100">
+            <div class="container">
+                <div class="container">
+                    <table class="table border border-2">
+                        <tr>
+                            <td>
+                                <a href="/restaurant/list">Restaurant</a>
+                            </td>
+                            <td>
+                                <a href="/review">Review</a>
+                            </td>
+                            <td>
+                                <a href="#">User Info</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </div>
     </header>
+
     <script src="/js/restaurant-list.js"></script>
 </th:block>
 </html>

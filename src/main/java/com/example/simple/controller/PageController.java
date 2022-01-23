@@ -111,4 +111,9 @@ public class PageController {
     public ModelAndView index() {
         return new ModelAndView("index");
     }
+
+    @GetMapping("/userpage")
+    public ModelAndView userpage() {
+        return new ModelAndView("userpage");
+    }
 }
