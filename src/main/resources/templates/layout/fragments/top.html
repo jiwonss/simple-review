@@ -13,7 +13,7 @@
                     <li class="nav-item"><a class="nav-link" href="/signup" sec:authorize="isAnonymous()">Sign Up</a></li>
                     <li class="nav-item"><a class="nav-link" href="/login" sec:authorize="isAnonymous()">LogIn</a></li>
                     <li class="nav-item"><a class="nav-link" href="#" sec:authorize="isAuthenticated()"><span sec:authentication="name"></span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/restaurant/list" sec:authorize="isAuthenticated()">My Page</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/userpage" sec:authorize="isAuthenticated()">My Page</a></li>
                     <li class="nav-item">
                         <form id="logout" action="/logout" method="POST">
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
