@@ -1,30 +1,16 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.thymeleaf.org"-->
-<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--      layout:decorator="~{layout/layout}">-->
-
-<!--<th:block layout:fragment="content">-->
-<!--    &lt;!&ndash; Begin Page Content &ndash;&gt;-->
-<!--    <header class="masthead text-center text-white">-->
-<!--        <div class="masthead-content">-->
-            <h1 class="masthead-subheading">Simple Review</h1>
-            <div class="grid-columns-2 container px-5 py-5  d-grid">
-                <th:block th:each="review : ${reviews}">
-                    <div th:id="'list' + ${review.id}" class="p-4 border border-light border-3 m-4">
-                        <h3 id="title" class="my-4" th:text="${review.title}"></h3>
-                        <div class="content my-4">
-                            <input class="mx-auto p-0 border-0" type="text" style="display:none;">
-                            <span th:text="${review.content}"></span>
-                        </div>
-                        <div class="button my-1">
-                            <button class="edit btn btn-primary btn-sm" th:onclick="|editBtnClick('${review.id}');|">수정</button>
-                            <button class="del btn btn-primary btn-sm"th:onclick="|delBtnClick('${review.id}');|">삭제</button>
-                        </div>
-                    </div>
-                </th:block>
+<h1 class="masthead-subheading">Simple Review</h1>
+<div class="grid-columns-2 container px-5 py-5  d-grid">
+    <th:block th:each="review : ${reviews}">
+        <div th:id="'list' + ${review.id}" class="p-4 border border-light border-3 m-4">
+            <h3 id="title" class="my-4" th:text="${review.title}"></h3>
+            <div class="content my-4">
+                <input class="mx-auto p-0 border-0" type="text" style="display:none;">
+                <span th:text="${review.content}"></span>
             </div>
-<!--        </div>-->
-<!--    </header>-->
-<!--    <script src="/js/review-list.js"></script>-->
-<!--</th:block>-->
-<!--</html>-->
+            <div class="button my-1">
+                <button class="edit btn btn-primary btn-sm" th:onclick="|editBtnClick('${review.id}');|">수정</button>
+                <button class="del btn btn-primary btn-sm"th:onclick="|delBtnClick('${review.id}');|">삭제</button>
+            </div>
+        </div>
+    </th:block>
+</div>
