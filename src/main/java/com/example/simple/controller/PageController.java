@@ -97,7 +97,7 @@ public class PageController {
         return new ModelAndView("write");
     }
 
-    @GetMapping("/review")
+    @GetMapping("/review/list")
     public ModelAndView reviewList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
         List<ReviewDto> reviews = new ArrayList<>();
         if (userEntity != null) {
@@ -116,4 +116,6 @@ public class PageController {
     public ModelAndView userpage() {
         return new ModelAndView("userpage");
     }
+
+
 }
