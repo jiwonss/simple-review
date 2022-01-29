@@ -117,5 +117,10 @@ public class PageController {
         return new ModelAndView("userpage");
     }
 
+    @GetMapping("/userinfo")
+    public ModelAndView userinfo() {
+        return new ModelAndView("userinfo");
+    }
+
 
 }

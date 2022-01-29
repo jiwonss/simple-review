@@ -13,6 +13,11 @@ function sendAjax(url, clickedName) {
 
 var tabmenu = document.querySelector(".tab-menu");
 tabmenu.addEventListener("click", function (evt) {
-	var temp = evt.target.innerText.split(" ")[0].toLowerCase();
-	sendAjax(`./${temp}/list`, evt.target.innerText);
+	var category = evt.target.innerText.split(" ")[0].toLowerCase();
+	if (category == "user"){
+		category += "info";
+		sendAjax(`./${category}`, evt.target.innerText);
+	} else {
+		sendAjax(`./${category}/list`, evt.target.innerText);
+	}
 });
