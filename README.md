@@ -56,6 +56,7 @@
 <!-- USAGE -->
 ## 사용법
 
+
 <div align="center">
   
   |기능|-|-|
@@ -70,9 +71,9 @@
   |**Review 작성**|<img src="https://user-images.githubusercontent.com/72875528/148559638-0a2be7a7-a653-4be1-aaa2-6c5e5b4e927d.PNG"><div>Reveiw 작성 페이지</div>|-|
   |**Review 수정**|<img src="https://user-images.githubusercontent.com/72875528/148559641-784fcbe5-bb24-48fd-9d98-f62ecedbe9d1.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List 수정 후</div>|
   |**Review 삭제**|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559645-30f9e36e-9db6-4778-9fac-251970ebfb01.PNG"><div>Review List 삭제 후</div>|
-  |**Userpage**|<img src=""><div>User</div>|-|
-  |**Userpage**|<img src=""><div>Restaurant List</div>|<img src=""><div>Review List</div>|
-  |**Userpage**|<img src=""><div>User Info</div>|-|
+  |**My Page**|<img src="https://user-images.githubusercontent.com/72875528/151708282-9fb1104c-bede-4dc8-9b8d-c139035e525c.PNG"><div>My Page</div>|-|
+  |**My page**|<img src="https://user-images.githubusercontent.com/72875528/151708284-e44f1c79-9760-4b69-9c13-8d7e44953c0c.PNG"><div>Restaurant List</div>|<img src="https://user-images.githubusercontent.com/72875528/151708286-52233196-d536-44f3-b117-4ed4c4abc12e.PNG"><div>Review List</div>|
+  |**My page**|<img src="https://user-images.githubusercontent.com/72875528/151708281-a16574b7-b95c-4d9b-a0aa-200870fddeb3.PNG"><div>User Info</div>|-|
   
   
 </div>
