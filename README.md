@@ -70,6 +70,10 @@
   |**Review 작성**|<img src="https://user-images.githubusercontent.com/72875528/148559638-0a2be7a7-a653-4be1-aaa2-6c5e5b4e927d.PNG"><div>Reveiw 작성 페이지</div>|-|
   |**Review 수정**|<img src="https://user-images.githubusercontent.com/72875528/148559641-784fcbe5-bb24-48fd-9d98-f62ecedbe9d1.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List 수정 후</div>|
   |**Review 삭제**|<img src="https://user-images.githubusercontent.com/72875528/148559648-2217537e-2fb9-4e42-b1f3-84206893b9a5.PNG"><div>Review List</div>|<img src="https://user-images.githubusercontent.com/72875528/148559645-30f9e36e-9db6-4778-9fac-251970ebfb01.PNG"><div>Review List 삭제 후</div>|
+  |**Userpage**|<img src=""><div>User</div>|-|
+  |**Userpage**|<img src=""><div>Restaurant List</div>|<img src=""><div>Review List</div>|
+  |**Userpage**|<img src=""><div>User Info</div>|-|
+  
   
 </div>
 
