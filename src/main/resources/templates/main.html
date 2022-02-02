@@ -9,7 +9,8 @@
             <div class="container px-5">
                 <h1 class="masthead-heading mb-0">Simple Review</h1>
                 <h2 class="masthead-subheading mb-0">Simple Review 작성하기</h2>
-                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Go</a>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="/login" sec:authorize="isAnonymous()">Go</a>
+                <a class="btn btn-primary btn-xl rounded-pill mt-5" href="/restaurant" sec:authorize="isAuthenticated()">검색</a>
             </div>
         </div>
     </header>
