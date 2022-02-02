@@ -4,13 +4,12 @@
       layout:decorator="~{layout/layout}">
 
 <th:block layout:fragment="content">
-  <!-- Begin Page Content -->
   <header class="masthead text-center text-white">
       <div class="masthead-content">
           <div class="container">
-              <span th:text="${title}"></span>
-              <input class="content form-control p-5" type="text">
-              <button class="btn btn-primary m-xxl-4" type="button" th:onclick="saveBtn([[${title}]]); location.href='/review'">저장</button>
+              <span class="d-block p-3" th:text="${title}"></span>
+              <input class="content form-control w-50 p-4 d-table mx-auto" type="text" maxlength="50">
+              <button class="btn btn-primary m-xxl-4" type="button" th:onclick="saveBtn([[${title}]]); location.href='/review/list'">저장</button>
           </div>
       </div>
   </header>
