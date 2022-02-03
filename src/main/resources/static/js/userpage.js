@@ -18,6 +18,6 @@ tabmenu.addEventListener("click", function (evt) {
 		category += "info";
 		sendAjax(`./${category}`, evt.target.innerText);
 	} else {
-		sendAjax(`./${category}/list`, evt.target.innerText);
+		sendAjax(`./user/${category}/list`, evt.target.innerText);
 	}
 });

@@ -122,5 +122,25 @@ public class PageController {
         return new ModelAndView("userinfo");
     }
 
+    @GetMapping("/user/restaurant/list")
+    public ModelAndView userRestaurantList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
+        List<RestaurantDto> restaurants = new ArrayList<>();
+        if (userEntity != null){
+            restaurants = restaurantService.findAllByUser(userEntity.getId());
+            model.addAttribute("restaurants", restaurants);
+        }
+        return new ModelAndView("user-restaurant-list");
+    }
+
+    @GetMapping("/user/review/list")
+    public ModelAndView userReviewList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
+        List<ReviewDto> reviews = new ArrayList<>();
+        if (userEntity != null) {
+            reviews = reviewService.findAllByUser(userEntity.getId());
+            model.addAttribute("reviews", reviews);
+        }
+        return new ModelAndView("user-review-list");
+    }
+
 
 }
