@@ -36,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling(error->
                         error.accessDeniedPage("/access-denied")
                 )
+                .headers(headers -> headers
+                        .cacheControl(cache -> cache.disable())
+                )
                 .csrf().ignoringAntMatchers("/api/**")
         ;
     }
