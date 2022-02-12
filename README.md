@@ -56,13 +56,13 @@
 <!-- USAGE -->
 ## 사용법
 
-
 <div align="center">
   
   |기능|-|-|
   |:---:|:---:|:---:|
   |**Sign Up**|<img src="https://user-images.githubusercontent.com/72875528/148559626-d0839ef8-be9d-46c1-97ed-c45fb247d0d8.PNG"><div>회원가입 페이지</div>|<img src="https://user-images.githubusercontent.com/72875528/148559631-c1f5068e-21d0-4b2f-a9f9-510131a22bb5.PNG"><div>회원가입 완료 시 로그인 페이지로 이동</div>|
-  |**Login**|<img src="https://user-images.githubusercontent.com/72875528/148559631-c1f5068e-21d0-4b2f-a9f9-510131a22bb5.PNG"><div>로그인 페이지</div>|<img src="https://user-images.githubusercontent.com/72875528/152539595-0a59718c-f846-437a-b483-ae30f7dfd652.PNG"><div>로그인 완료</div>|
+  |**Login**|<img src="https://user-images.githubusercontent.com/72875528/148559631-c1f5068e-21d0-4b2f-a9f9-510131a22bb5.PNG"><div>로그인 페이지</div>|<img src="https://user-images.githubusercontent.com/72875528/153715210-4a3ec666-fd62-4637-8e75-fee5a6fada4c.PNG"><div>로그인 실패</div>|
+  |**Login**|<img src="https://user-images.githubusercontent.com/72875528/152539595-0a59718c-f846-437a-b483-ae30f7dfd652.PNG"><div>로그인 완료</div>|-|
   |**Logout**|<img src="https://user-images.githubusercontent.com/72875528/152539595-0a59718c-f846-437a-b483-ae30f7dfd652.PNG"><div>로그인</div>|<img src="https://user-images.githubusercontent.com/72875528/152539600-8db2f99a-5269-4dc1-93e4-ce2bd0151e8e.PNG"><div>로그아웃</div>|
   |**Restaurant List**|<img src="https://user-images.githubusercontent.com/72875528/148559627-bfff1611-9945-4d8f-9434-04d3ac50bb86.PNG"><div>Restaurant List</div>|-|
   |**Restaurant Visit Count**|<img src="https://user-images.githubusercontent.com/72875528/148559627-bfff1611-9945-4d8f-9434-04d3ac50bb86.PNG"><div>Visit Count 추가 전</div>|<img src="https://user-images.githubusercontent.com/72875528/148559630-f12b603e-af67-4803-9965-9a58f3a06b46.PNG"><div>Visit Count 추가 후</div>|
