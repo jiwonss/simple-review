@@ -2,6 +2,7 @@ package com.example.simple.restaurant.entity;
 
 import com.example.simple.review.entity.ReviewEntity;
 import com.example.simple.user.entity.UserEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -49,6 +50,7 @@ public class RestaurantEntity {
     @Column(name = "lastvisitdate")
     private LocalDateTime lastVisitDate;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;

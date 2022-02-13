@@ -1,5 +1,6 @@
 package com.example.simple.user.repository;
 
+import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

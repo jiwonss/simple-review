@@ -1,6 +1,7 @@
 package com.example.simple.user.entity;
 
 import com.example.simple.restaurant.entity.RestaurantEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,6 +31,7 @@ public class UserEntity implements UserDetails {
     @Column(name = "auth")
     private String auth;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user")
     private List<RestaurantEntity> restaurants = new ArrayList<>();
 

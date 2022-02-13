@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,14 +86,21 @@ public class RestaurantService {
         user.getRestaurants().add(restaurant);
 
         var saveEntity = new RestaurantEntity();
-        if (restaurantRepository.existsByTitle(restaurant.getTitle())){
-            var id = restaurantRepository.findByTitle(restaurant.getTitle()).getId();
-            var findEntity = restaurantRepository.findById(id).get();
-            saveEntity = restaurantRepository.save(findEntity);
+
+        List<RestaurantEntity> restaurants = user.getRestaurants();
+
+        boolean check = true;
+        for (RestaurantEntity r: restaurants) {
+            if (r.getTitle().equals(restaurant.getTitle())){
+                check = false;
+                saveEntity = restaurantRepository.save(r);
+            }
         }
-        else {
+
+        if (check) {
             saveEntity = restaurantRepository.save(restaurant);
         }
+
         return entityToDto(saveEntity);
     }
 
