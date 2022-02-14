@@ -6,14 +6,12 @@ import com.example.simple.naver.dto.SearchLocalReq;
 import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.repository.RestaurantRepository;
-import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.user.entity.UserEntity;
 import com.example.simple.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,7 +91,6 @@ public class RestaurantService {
         for (RestaurantEntity r: restaurants) {
             if (r.getTitle().equals(restaurant.getTitle())){
                 check = false;
-                saveEntity = restaurantRepository.save(r);
             }
         }
 
@@ -121,7 +118,7 @@ public class RestaurantService {
 
     private RestaurantDto entityToDto(RestaurantEntity restaurantEntity) {
         var dto = new RestaurantDto();
-        dto.setId(restaurantEntity.getId());
+//        dto.setId(restaurantEntity.getId());
         dto.setTitle(restaurantEntity.getTitle());
         dto.setCategory(restaurantEntity.getCategory());
         dto.setAddress(restaurantEntity.getAddress());
