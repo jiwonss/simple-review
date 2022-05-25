@@ -23,7 +23,6 @@ public class RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final UserRepository userRepository;
 
-
     public RestaurantDto search(String query) {
         // 지역 검색
         var searchLocalReq = new SearchLocalReq();
