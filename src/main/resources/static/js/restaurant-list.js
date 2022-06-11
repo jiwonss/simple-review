@@ -12,11 +12,12 @@ function addBtnClick(id) {
 }
 
 function delBtnClick(id) {
+	console.log(id);
 	fetch(`http://localhost:8080/api/restaurant/delete/${id}`, {
 		method: "DELETE",
     })
 		.then((data) => console.log(data));
-    const list = document.querySelector(`tr.list[id=list${id}]`);
+    const list = document.querySelector(`tr.list[id=${id}]`);
     list.remove();
 }
 

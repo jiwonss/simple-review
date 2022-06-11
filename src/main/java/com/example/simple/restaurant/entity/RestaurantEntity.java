@@ -51,7 +51,7 @@ public class RestaurantEntity {
     private LocalDateTime lastVisitDate;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 

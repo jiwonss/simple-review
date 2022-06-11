@@ -21,7 +21,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:id="'list' + ${restaurant.id}" class="list" th:each="restaurant : ${restaurants}">
+                        <tr th:id="${restaurant.id}" class="list" th:each="restaurant : ${restaurants}">
                             <td><span th:text="${restaurant.title}"></span></td>
                             <td><span th:text="${restaurant.category}"></span></td>
                             <td><span th:text="${restaurant.address}"></span></td>

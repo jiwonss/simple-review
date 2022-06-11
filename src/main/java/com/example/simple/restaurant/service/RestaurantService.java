@@ -79,9 +79,6 @@ public class RestaurantService {
                 .lastVisitDate(restaurantDto.getLastVisitDate())
                 .build();
 
-        restaurant.setUser(user);
-        user.getRestaurants().add(restaurant);
-
         var saveEntity = new RestaurantEntity();
 
         List<RestaurantEntity> restaurants = user.getRestaurants();
@@ -94,6 +91,8 @@ public class RestaurantService {
         }
 
         if (check) {
+            restaurant.setUser(user);
+            user.getRestaurants().add(restaurant);
             saveEntity = restaurantRepository.save(restaurant);
         }
 
@@ -117,7 +116,7 @@ public class RestaurantService {
 
     private RestaurantDto entityToDto(RestaurantEntity restaurantEntity) {
         var dto = new RestaurantDto();
-//        dto.setId(restaurantEntity.getId());
+        dto.setId(restaurantEntity.getId());
         dto.setTitle(restaurantEntity.getTitle());
         dto.setCategory(restaurantEntity.getCategory());
         dto.setAddress(restaurantEntity.getAddress());
