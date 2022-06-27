@@ -21,7 +21,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(email));
     }
 
-    public Long save(UserDto userDto){
+    public UserEntity save(UserDto userDto){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userDto.setPassword(encoder.encode(userDto.getPassword()));
 
@@ -29,6 +29,6 @@ public class UserService implements UserDetailsService {
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
                 .auth(userDto.getAuth())
-                .build()).getId();
+                .build());
     }
 }
