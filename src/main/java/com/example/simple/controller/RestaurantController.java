@@ -14,6 +14,11 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
+    @GetMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
+
     @GetMapping("/search")
     public RestaurantDto search(@RequestParam String query) {
         return restaurantService.search(query);

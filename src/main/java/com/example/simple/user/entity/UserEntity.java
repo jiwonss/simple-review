@@ -15,6 +15,7 @@ import java.util.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "user")
+@ToString(exclude = "restaurant")
 public class UserEntity implements UserDetails {
 
     @Id
