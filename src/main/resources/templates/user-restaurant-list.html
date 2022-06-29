@@ -17,10 +17,10 @@
         <td><a th:href="${restaurant.homePageLink}"><span th:text="${restaurant.homePageLink}"></span></a></td>
         <td class="add">
             <span class="m-5" th:text="${restaurant.visitCount}"></span>
-            <button class="btn btn-primary btn-sm" th:onclick="|addBtnClick('${restaurant.id}');|">추가</button>
+            <button class="btn btn-primary btn-sm" th:onclick="|addRestaurantBtnClick('${restaurant.id}');|">추가</button>
         </td>
         <td class="delete">
-            <button class="btn btn-primary btn-sm" th:onclick="|delBtnClick('${restaurant.id}');|">삭제</button>
+            <button class="btn btn-primary btn-sm" th:onclick="|delRestaurantBtnClick('${restaurant.id}');|">삭제</button>
         </td>
         <td>
             <form method="get" th:action="@{/write}">

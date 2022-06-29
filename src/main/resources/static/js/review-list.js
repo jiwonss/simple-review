@@ -29,7 +29,7 @@ function editBtnClick(id) {
 
 	function checkBtnClick() {
 		fetch(`http://localhost:8080/api/review/edit`, {
-			method: "POST",
+			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
 			},

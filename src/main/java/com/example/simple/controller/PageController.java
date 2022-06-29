@@ -94,7 +94,7 @@ public class PageController {
     @GetMapping("/write")
     public ModelAndView write(@RequestParam String title, Model model) {
         model.addAttribute("title", title);
-        return new ModelAndView("write");
+        return new ModelAndView("review-write");
     }
 
     @GetMapping("/review/list")

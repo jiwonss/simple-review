@@ -1,4 +1,4 @@
-function addBtnClick(id) {
+function addRestaurantBtnClick(id) {
 	fetch(`http://localhost:8080/api/restaurant/${id}`, {
 		method: "PUT",
 		headers: {
@@ -9,9 +9,10 @@ function addBtnClick(id) {
 	const list = document.querySelector(`tr.list[id=list${id}]`);
 	const span = list.querySelector(".add span");
 	span.innerHTML = parseInt(span.innerHTML, 10) + 1;
+	location.replace(location.href);
 }
 
-function delBtnClick(id) {
+function delRestaurantBtnClick(id) {
 	console.log(id);
 	fetch(`http://localhost:8080/api/restaurant/delete/${id}`, {
 		method: "DELETE",
@@ -19,6 +20,7 @@ function delBtnClick(id) {
 		.then((data) => console.log(data));
     const list = document.querySelector(`tr.list[id=${id}]`);
     list.remove();
+	location.replace(location.href);
 }
 
 
