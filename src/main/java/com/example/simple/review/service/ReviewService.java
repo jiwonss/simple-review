@@ -7,6 +7,7 @@ import com.example.simple.review.entity.ReviewEntity;
 import com.example.simple.review.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,7 @@ public class ReviewService {
         return reviews;
     }
 
+    @Transactional
     public void delete(Long id) {
         reviewRepository.deleteById(id);
     }

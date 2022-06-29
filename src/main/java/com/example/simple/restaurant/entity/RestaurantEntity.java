@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "restaurant")
 @Builder
-@ToString(exclude = "user")
+@ToString(exclude = {"user", "review"})
 public class RestaurantEntity {
 
     @Id

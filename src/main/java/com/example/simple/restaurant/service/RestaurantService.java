@@ -44,7 +44,7 @@ public class RestaurantService {
                 var imageItem = searchImageRes.getItems().stream().findFirst().get();
                 // 결과 리턴
                 var result = new RestaurantDto();
-                result.setTitle(localItem.getTitle());
+                result.setTitle(localItem.getTitle().replaceAll("<[^>]*>", ""));
                 result.setCategory(localItem.getCategory());
                 result.setAddress(localItem.getAddress());
                 result.setRoadAddress(localItem.getRoadAddress());
