@@ -135,8 +135,14 @@ public class RestaurantService {
                 .collect(Collectors.toList());
     }
 
-    public List<RestaurantDto> findAllByUser(Long id) {
+    public List<RestaurantDto> findAllByUserId(Long id) {
         return restaurantRepository.findAllByUserId(id).stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<RestaurantDto> findAllByUserEmail(String email) {
+        return restaurantRepository.findAllByUserEmail(email).stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
     }

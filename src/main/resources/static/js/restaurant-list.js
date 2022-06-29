@@ -1,6 +1,6 @@
 function addBtnClick(id) {
 	fetch(`http://localhost:8080/api/restaurant/${id}`, {
-		method: "POST",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
 		},

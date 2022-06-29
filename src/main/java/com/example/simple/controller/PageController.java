@@ -75,7 +75,7 @@ public class PageController {
     public ModelAndView restaurantList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
         if (userEntity != null){
-            restaurants = restaurantService.findAllByUser(userEntity.getId());
+            restaurants = restaurantService.findAllByUserId(userEntity.getId());
             model.addAttribute("restaurants", restaurants);
         }
         return new ModelAndView("restaurant-list");
@@ -86,7 +86,7 @@ public class PageController {
         var id = restaurantService.getUser().getId();
         restaurantService.add(restaurantDto);
         List<RestaurantDto> restaurants = new ArrayList<>();
-        restaurants = restaurantService.findAllByUser(id);
+        restaurants = restaurantService.findAllByUserId(id);
         model.addAttribute("restaurants", restaurants);
         return "restaurant-list";
     }
@@ -126,7 +126,7 @@ public class PageController {
     public ModelAndView userRestaurantList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
         if (userEntity != null){
-            restaurants = restaurantService.findAllByUser(userEntity.getId());
+            restaurants = restaurantService.findAllByUserId(userEntity.getId());
             model.addAttribute("restaurants", restaurants);
         }
         return new ModelAndView("user-restaurant-list");

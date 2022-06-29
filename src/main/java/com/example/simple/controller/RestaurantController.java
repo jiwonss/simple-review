@@ -3,6 +3,7 @@ package com.example.simple.controller;
 import com.example.simple.restaurant.dto.RestaurantDto;
 import com.example.simple.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/restaurant")
 @RequiredArgsConstructor
+@PreAuthorize("isAuthenticated()")
 public class RestaurantController {
 
     private final RestaurantService restaurantService;
@@ -34,9 +36,14 @@ public class RestaurantController {
         return restaurantService.findAll();
     }
 
-    @GetMapping("/all/{id}")
+    @GetMapping("/all/user")
     public List<RestaurantDto> findAllByUserId(@RequestParam Long id) {
-        return restaurantService.findAllByUser(id);
+        return restaurantService.findAllByUserId(id);
+    }
+
+    @GetMapping("/all/user/{email}")
+    public List<RestaurantDto> findAllByUserEmail(@PathVariable String email) {
+        return restaurantService.findAllByUserEmail(email);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -44,7 +51,7 @@ public class RestaurantController {
         restaurantService.delete(id);
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void addVisit(@PathVariable Long id){
         restaurantService.addVisit(id);
     }
