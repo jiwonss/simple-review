@@ -10,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -54,7 +53,7 @@ public class ReviewControllerTest {
     @DisplayName("[Review] Add")
     public void addTest() throws Exception {
         ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setTitle("게더링");
+        reviewDto.setTitle("코롬방제과점");
         reviewDto.setContent("test 입니다.");
 
         String json = new ObjectMapper().writeValueAsString(reviewDto);
@@ -102,8 +101,8 @@ public class ReviewControllerTest {
     @DisplayName("[Review] Edit")
     public void editTest() throws Exception {
         ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setId(29L);
-        reviewDto.setTitle("게더링");
+        reviewDto.setId(39L);
+        reviewDto.setTitle("코롬방제과점");
         reviewDto.setContent("test 입니다.");
 
         String json = new ObjectMapper().writeValueAsString(reviewDto);
@@ -133,11 +132,11 @@ public class ReviewControllerTest {
     @DisplayName("[Review] Delete")
     public void deleteTest() throws Exception {
         ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setTitle("게더링");
+        reviewDto.setTitle("코롬방제과점");
         reviewDto.setContent("test 입니다.");
 
         mockMvc.perform(
-                MockMvcRequestBuilders.delete("/api/review/delete/28")
+                MockMvcRequestBuilders.delete("/api/review/delete/39")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(

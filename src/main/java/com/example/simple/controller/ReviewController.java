@@ -2,7 +2,9 @@ package com.example.simple.controller;
 
 import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.review.service.ReviewService;
+import com.example.simple.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +18,8 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping("/add")
-    public ReviewDto add(@RequestBody ReviewDto reviewDto) {
-        return reviewService.add(reviewDto);
+    public ReviewDto add(@AuthenticationPrincipal UserEntity userEntity, @RequestBody ReviewDto reviewDto) {
+        return reviewService.add(userEntity, reviewDto);
     }
 
     @GetMapping("/all")

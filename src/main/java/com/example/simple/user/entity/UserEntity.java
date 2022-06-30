@@ -33,7 +33,7 @@ public class UserEntity implements UserDetails {
     private String auth;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<RestaurantEntity> restaurants = new ArrayList<>();
 
     @Builder

@@ -5,7 +5,12 @@ import com.example.simple.restaurant.repository.RestaurantRepository;
 import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.review.entity.ReviewEntity;
 import com.example.simple.review.repository.ReviewRepository;
+import com.example.simple.user.entity.UserEntity;
+import com.example.simple.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,14 +25,23 @@ public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final RestaurantRepository restaurantRepository;
 
-    public ReviewDto add(ReviewDto reviewDto) {
-        var restaurant = restaurantRepository.findByTitle(reviewDto.getTitle());
-        var review = ReviewEntity.builder()
-                .content(reviewDto.getContent())
-                .build();
-        review.setRestaurant(restaurant);
-        restaurant.getReviews().add(review);
-        var saveEntity = reviewRepository.save(review);
+    public ReviewDto add(UserEntity userEntity, ReviewDto reviewDto) {
+        String title = reviewDto.getTitle();
+        var restaurants = userEntity.getRestaurants();
+        var saveEntity = new ReviewEntity();
+
+        for (RestaurantEntity entity : restaurants) {
+            if (entity.getTitle().equals(title)) {
+                var review = ReviewEntity.builder()
+                        .content(reviewDto.getContent())
+                        .build();
+
+                review.setRestaurant(entity);
+                entity.getReviews().add(review);
+                saveEntity = reviewRepository.save(review);
+            }
+        }
+
         return entityToDto(saveEntity);
     }
 

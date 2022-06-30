@@ -52,12 +52,12 @@ public class RestaurantEntity {
     private LocalDateTime lastVisitDate;
 
     @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @Builder.Default
-    @OneToMany(mappedBy = "restaurant")
+    @OneToMany(mappedBy = "restaurant", fetch = FetchType.EAGER)
     private List<ReviewEntity> reviews = new ArrayList<>();
 
     public RestaurantEntity(String title, String category, String address, String roadAddress, String homePageLink, String imageLink, boolean isVisit, int visitCount, LocalDateTime lastVisitDate) {
