@@ -36,6 +36,12 @@ public class PageController {
         return new ModelAndView("signup");
     }
 
+    @GetMapping("/signup-error")
+    public String joinError(Model model) {
+        model.addAttribute("joinError", true);
+        return "signup";
+    }
+
     @GetMapping("/login")
     public ModelAndView login() {
         return new ModelAndView("login");
