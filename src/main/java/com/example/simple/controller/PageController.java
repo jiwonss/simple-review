@@ -36,6 +36,12 @@ public class PageController {
         return new ModelAndView("signup");
     }
 
+    @GetMapping("/email-check")
+    public String emailCheck(Model model) {
+        model.addAttribute("emailCheck", true);
+        return "signup";
+    }
+
     @GetMapping("/signup-error")
     public String joinError(Model model) {
         model.addAttribute("joinError", true);

@@ -27,6 +27,18 @@ public class UserController {
 
     private final UserService userService;
 
+    // email 중복 확인
+    @GetMapping(value = "/check")
+    public String emailDuplicateCheck(@RequestParam String email, RedirectAttributes redirectAttributes) {
+        if (userService.existsByEmail(email)) {
+            redirectAttributes.addFlashAttribute("msg", "이메일이 이미 존재합니다.");
+            return "redirect:/email-check";
+        }
+        redirectAttributes.addFlashAttribute("email", email);
+        redirectAttributes.addFlashAttribute("msg", "✔");
+        return "redirect:/email-check";
+    }
+
     // 회원가입
     @PostMapping(value = "/new")
     public String signup(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){

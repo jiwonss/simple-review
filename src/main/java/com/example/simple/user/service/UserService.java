@@ -31,4 +31,9 @@ public class UserService implements UserDetailsService {
                 .auth(userDto.getAuth())
                 .build());
     }
+
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 }

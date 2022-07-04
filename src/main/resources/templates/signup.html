@@ -11,7 +11,11 @@
                 <form method="post" th:action="@{/new}">
                     <div class="text-start">
                         <label class="form-label">Email</label>
-                        <input name="email" class="form-control mb-sm-4">
+                        <input name="email" class="form-control mb-sm-2" type="email" th:value="${email}">
+                        <div class="py-1" th:if="${emailCheck}">
+                            <span th:text="${msg}"></span>
+                        </div>
+                        <button class="small btn btn-primary d-block mb-sm-2" formaction="/check?email=${email}" type="submit" formmethod="get">Email 중복 확인</button>
 
                         <label class="form-label">Password</label>
                         <input name="password" class="form-control mb-sm-4">
@@ -26,11 +30,10 @@
                             </tr>
                         </table>
                     </div>
-                    <button class="btn btn-primary btn-primary my-2" type="submit">Join</button>
+                    <button class="btn btn-primary my-2" type="submit">Join</button>
                 </form>
             </div>
         </div>
     </header>
-
 </th:block>
 </html>
