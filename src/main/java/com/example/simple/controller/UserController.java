@@ -1,9 +1,11 @@
 package com.example.simple.controller;
 
 import com.example.simple.user.dto.UserDto;
+import com.example.simple.user.entity.UserEntity;
 import com.example.simple.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
@@ -65,5 +67,20 @@ public class UserController {
     public String logout(HttpServletRequest request, HttpServletResponse response){
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/";
+    }
+
+    // 회원탈퇴
+    @GetMapping(value = "/delete")
+    public String deleteUser(@AuthenticationPrincipal UserEntity userEntity, RedirectAttributes redirectAttributes) {
+        if (userService.deleteUser(userEntity.getEmail()) > 0) {
+            redirectAttributes.addFlashAttribute("msg", "성공적으로 회원 정보를 삭제하였습니다.");
+            redirectAttributes.addFlashAttribute("url", "/");
+            SecurityContextHolder.clearContext();
+        } else {
+            redirectAttributes.addFlashAttribute("msg", "회원 정보 삭제를 실패하였습니다.");
+            redirectAttributes.addFlashAttribute("url", "/userpage");
+        }
+
+        return "redirect:/delete/account";
     }
 }

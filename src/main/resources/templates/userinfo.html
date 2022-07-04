@@ -3,7 +3,7 @@
         <tbody>
         <tr>
             <td>Email</td>
-            <td><span sec:authentication="name"></span></td>
+            <td><span class="email" sec:authentication="name"></span></td>
         </tr>
         <tr>
             <td>Auth</td>
@@ -12,6 +12,14 @@
         <tr>
             <td>비밀번호 변경</td>
             <td><button class="btn btn-primary">비밀번호 변경</button></td>
+        </tr>
+        <tr>
+            <td>Delete Account</td>
+            <td>
+                <form method="get">
+                    <button class="btn btn-primary" formaction="/delete" type="submit">Delete Account</button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

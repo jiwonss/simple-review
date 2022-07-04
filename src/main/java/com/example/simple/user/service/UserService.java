@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,4 +37,12 @@ public class UserService implements UserDetailsService {
         return userRepository.existsByEmail(email);
     }
 
+    @Transactional
+    public int deleteUser(String email) {
+        if (existsByEmail(email)) {
+            userRepository.deleteByEmail(email);
+            return 1;
+        }
+        return 0;
+    }
 }

@@ -134,6 +134,12 @@ public class PageController {
         return new ModelAndView("userinfo");
     }
 
+    @GetMapping("/delete/account")
+    public String deleteAccount(Model model) {
+        model.addAttribute("deleteCheck", true);
+        return "userpage";
+    }
+
     @GetMapping("/user/restaurant/list")
     public ModelAndView userRestaurantList(@AuthenticationPrincipal UserEntity userEntity, Model model) {
         List<RestaurantDto> restaurants = new ArrayList<>();
