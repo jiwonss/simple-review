@@ -37,6 +37,12 @@ public class UserService implements UserDetailsService {
         return userRepository.existsByEmail(email);
     }
 
+    public void updatePassword(UserEntity userEntity, String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        userEntity.setPassword(encoder.encode(password));
+        userRepository.save(userEntity);
+    }
+
     @Transactional
     public int deleteUser(String email) {
         if (existsByEmail(email)) {

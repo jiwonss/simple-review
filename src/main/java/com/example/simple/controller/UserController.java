@@ -1,8 +1,10 @@
 package com.example.simple.controller;
 
+import com.example.simple.user.dto.PasswordDto;
 import com.example.simple.user.dto.UserDto;
 import com.example.simple.user.entity.UserEntity;
 import com.example.simple.user.service.UserService;
+import com.example.simple.validation.PasswordValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,10 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +30,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+
+    @InitBinder("passwordDto")
+    public void initBinder(WebDataBinder webDataBinder) {
+        webDataBinder.addValidators(new PasswordValidator());
+    }
 
     // email 중복 확인
     @GetMapping(value = "/check")
@@ -67,6 +74,29 @@ public class UserController {
     public String logout(HttpServletRequest request, HttpServletResponse response){
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/";
+    }
+
+    // 비밀번호 변경
+    @PostMapping(value = "/change")
+    public String changePassword(@AuthenticationPrincipal UserEntity userEntity,
+                                 @ModelAttribute @Valid PasswordDto passwordDto,
+                                 Errors errors,
+                                 RedirectAttributes redirectAttributes) {
+
+        if (errors.hasErrors()) {
+            errors.getAllErrors().forEach(objectError -> {
+                FieldError field = (FieldError) objectError;
+                String message = objectError.getDefaultMessage();
+                log.info("field : " + field.getField());
+                log.info("message : " + message);
+            });
+            return "password-change";
+        }
+
+        userService.updatePassword(userEntity ,passwordDto.getNewPassword());
+        log.info("{} 비밀번호 번경 성공", userEntity.getEmail(), userEntity.getPassword());
+        redirectAttributes.addFlashAttribute("message", "Password를 변경하였습니다.");
+        return "redirect:/change/password";
     }
 
     // 회원탈퇴

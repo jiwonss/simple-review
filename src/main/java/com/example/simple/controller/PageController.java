@@ -1,10 +1,10 @@
 package com.example.simple.controller;
 
 import com.example.simple.restaurant.dto.RestaurantDto;
-import com.example.simple.restaurant.entity.RestaurantEntity;
 import com.example.simple.restaurant.service.RestaurantService;
 import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.review.service.ReviewService;
+import com.example.simple.user.dto.PasswordDto;
 import com.example.simple.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -132,6 +132,12 @@ public class PageController {
     @GetMapping("/userinfo")
     public ModelAndView userinfo() {
         return new ModelAndView("userinfo");
+    }
+
+    @GetMapping("/change/password")
+    public ModelAndView changePassword(Model model) {
+        model.addAttribute(new PasswordDto());
+        return new ModelAndView("password-change");
     }
 
     @GetMapping("/delete/account")
