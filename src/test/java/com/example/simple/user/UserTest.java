@@ -30,11 +30,7 @@ public class UserTest {
     private UserService userService;
 
     private UserDto createUser(String email, String password) {
-        UserDto userDto = new UserDto();
-        userDto.setEmail(email);
-        userDto.setPassword(password);
-        userDto.setAuth("ROLE_USER");
-
+        UserDto userDto = new UserDto(email, password, "ROLE_USER");
         userService.save(userDto);
         return userDto;
     }
