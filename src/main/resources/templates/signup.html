@@ -8,28 +8,38 @@
         <div class="masthead-content">
             <div class="login container w-25">
                 <h1 class="mb-sm-4">Sign Up</h1>
-                <form method="post" th:action="@{/new}">
+                <form method="post" action="#" th:action="@{/new}" th:object="${userDto}">
                     <div class="text-start">
-                        <label class="form-label">Email</label>
-                        <input name="email" class="form-control mb-sm-2" type="email" th:value="${email}">
-                        <div class="py-1" th:if="${emailCheck}">
-                            <span th:text="${msg}"></span>
-                        </div>
-                        <button class="small btn btn-primary d-block mb-sm-2" formaction="/check?email=${email}" type="submit" formmethod="get">Email 중복 확인</button>
+                        <div class="my-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" name="email" class="form-control mb-sm-2" type="email" th:value="${email}">
+                            <small id="emailHelp" class="form-text text-muted d-block">
+                                이메일을 입력하세요.
+                            </small>
+                            <small class="invalid-feedback">이메일을 입력하세요.</small>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</small>
 
-                        <label class="form-label">Password</label>
-                        <input name="password" class="form-control mb-sm-4" type="password">
+                            <div th:if="${message}">
+                                <span th:text="${message}"></span>
+                            </div>
+                            <button class="small btn btn-primary d-block mb-sm-2" formaction="/check?email=${email}" type="submit" formmethod="get">Email 중복 확인</button>
+                        </div>
+
+                        <div class="my-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" name="password" class="form-control mb-sm-2" type="password">
+                            <small id="passwordHelp" class="form-text text-muted d-block">
+                                패스워드를 입력하세요.
+                            </small>
+                            <small class="invalid-feedback">패스워드를 입력하세요.</small>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</small>
+
+                        </div>
 
                         <input type="radio" name="auth" value="ROLE_ADMIN,ROLE_USER"> admin
                         <input type="radio" name="auth" value="ROLE_USER" checked="checked"> user <br>
                     </div>
-                    <div class="error-message py-2" th:if="${joinError}">
-                        <table>
-                            <tr th:each="r : ${result}">
-                                <div th:text="${r}"></div>
-                            </tr>
-                        </table>
-                    </div>
+
                     <button class="btn btn-primary my-2" type="submit">Join</button>
                 </form>
             </div>

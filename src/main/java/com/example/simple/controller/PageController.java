@@ -5,6 +5,7 @@ import com.example.simple.restaurant.service.RestaurantService;
 import com.example.simple.review.dto.ReviewDto;
 import com.example.simple.review.service.ReviewService;
 import com.example.simple.user.dto.PasswordDto;
+import com.example.simple.user.dto.UserDto;
 import com.example.simple.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -32,7 +33,8 @@ public class PageController {
     }
 
     @GetMapping("/signup")
-    public ModelAndView join() {
+    public ModelAndView join(Model model) {
+        model.addAttribute(new UserDto());
         return new ModelAndView("signup");
     }
 

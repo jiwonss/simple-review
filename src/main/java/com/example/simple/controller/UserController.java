@@ -40,28 +40,25 @@ public class UserController {
     @GetMapping(value = "/check")
     public String emailDuplicateCheck(@RequestParam String email, RedirectAttributes redirectAttributes) {
         if (userService.existsByEmail(email)) {
-            redirectAttributes.addFlashAttribute("msg", "이메일이 이미 존재합니다.");
-            return "redirect:/email-check";
+            redirectAttributes.addFlashAttribute("message", "❌");
+            return "redirect:/signup";
         }
         redirectAttributes.addFlashAttribute("email", email);
-        redirectAttributes.addFlashAttribute("msg", "✔");
-        return "redirect:/email-check";
+        redirectAttributes.addFlashAttribute("message", "✔");
+        return "redirect:/signup";
     }
 
     // 회원가입
     @PostMapping(value = "/new")
     public String signup(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
-            List<String> result = new ArrayList<>();
             bindingResult.getAllErrors().forEach(objectError -> {
                 FieldError field = (FieldError) objectError;
                 String message = objectError.getDefaultMessage();
-                result.add("[" + field.getField() + "] " + message);
                 log.info("field : " + field.getField());
                 log.info("message : " + message);
             });
-            redirectAttributes.addFlashAttribute("result", result);
-            return "redirect:/signup-error";
+            return "signup";
         }
 
         userService.save(userDto);
