@@ -13,15 +13,11 @@ import org.springframework.security.test.web.servlet.response.SecurityMockMvcRes
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 public class UserTest {
-
-    @Autowired
-    private WebApplicationContext context;
 
     @Autowired
     private MockMvc mockMvc;
@@ -44,7 +40,7 @@ public class UserTest {
     @Transactional
     @DisplayName("로그인 성공")
     public void loginSuccess() throws Exception {
-        String email = "test3@a.com";
+        String email = "test2@a.com";
         String password = "1111";
 
         UserDto userDto = this.createUser(email, password);
@@ -62,7 +58,7 @@ public class UserTest {
     @Transactional
     @DisplayName("로그인 실패")
     public void loginFail() throws Exception {
-        String email = "test3@a.com";
+        String email = "test2@a.com";
         String password = "2222";
 
         UserDto userDto = this.createUser(email, password);
@@ -75,5 +71,4 @@ public class UserTest {
                 MockMvcResultHandlers.print()
         );
     }
-
 }

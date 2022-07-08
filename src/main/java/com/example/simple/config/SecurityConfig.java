@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers(headers -> headers
                         .cacheControl(cache -> cache.disable())
                 )
-                .csrf().ignoringAntMatchers("/api/**")
+                .csrf().ignoringAntMatchers("/api/**", "/new", "/change")
         ;
     }
 
