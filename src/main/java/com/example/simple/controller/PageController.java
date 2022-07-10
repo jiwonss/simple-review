@@ -13,9 +13,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,8 +110,23 @@ public class PageController {
 
     @GetMapping("/write")
     public ModelAndView write(@RequestParam String title, Model model) {
+        model.addAttribute(new ReviewDto());
         model.addAttribute("title", title);
         return new ModelAndView("review-write");
+    }
+
+    @PostMapping("/write/check")
+    public String writeCheck(@AuthenticationPrincipal UserEntity userEntity,
+                             @Valid ReviewDto reviewDto,
+                             Errors errors,
+                             Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", reviewDto.getTitle());
+            return "review-write";
+        }
+
+        reviewService.add(userEntity, reviewDto);
+        return "redirect:/review/list";
     }
 
     @GetMapping("/review/list")
