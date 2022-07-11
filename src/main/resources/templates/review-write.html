@@ -7,7 +7,7 @@
   <header class="masthead text-center text-white">
       <div class="masthead-content">
           <div class="container">
-              <form method="post" action="#" th:action="@{/write/check}" th:object="${reviewDto}">
+              <form method="post" action="#" th:action="@{/review}" th:object="${reviewDto}">
                   <span class="d-block p-3" th:text="${title}"></span>
                   <input name="title" type="hidden" th:value="${title}">
                   <input name="content" class="content form-control w-50 p-4 d-table mx-auto" type="text" maxlength="50">

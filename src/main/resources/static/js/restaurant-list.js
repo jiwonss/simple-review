@@ -14,7 +14,7 @@ function addRestaurantBtnClick(id) {
 
 function delRestaurantBtnClick(id) {
 	console.log(id);
-	fetch(`http://localhost:8080/api/restaurant/delete/${id}`, {
+	fetch(`http://localhost:8080/api/restaurant/${id}`, {
 		method: "DELETE",
     })
 		.then((data) => console.log(data));

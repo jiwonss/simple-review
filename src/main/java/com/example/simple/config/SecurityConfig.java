@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests(request->{
                     request
-                            .antMatchers("/", "/signup", "/login").permitAll()
+                            .antMatchers("/", "/user", "/signup", "/login").permitAll()
                             .antMatchers("/swagger-ui.html", "/swagger-ui/**").hasRole("VIEW")
                             .anyRequest().authenticated()
                             ;
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .headers(headers -> headers
                         .cacheControl(cache -> cache.disable())
                 )
-                .csrf().ignoringAntMatchers("/api/**", "/new", "/change")
+                .csrf().ignoringAntMatchers("/api/**", "/user/**")
         ;
     }
 

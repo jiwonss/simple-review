@@ -23,7 +23,7 @@
             <button class="btn btn-primary btn-sm" th:onclick="|delRestaurantBtnClick('${restaurant.id}');|">삭제</button>
         </td>
         <td>
-            <form method="get" th:action="@{/write}">
+            <form method="get" th:action="@{/review}">
                 <input type="hidden" name="title" th:value="${restaurant.title}">
                 <button class="btn btn-primary btn-sm">리뷰 작성</button>
             </form>

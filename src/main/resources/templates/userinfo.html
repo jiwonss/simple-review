@@ -11,20 +11,20 @@
         </tr>
         <tr>
             <td>비밀번호 변경</td>
-            <td><a class="btn btn-primary" href="/change/password">비밀번호 변경</a></td>
+            <td><a class="btn btn-primary" href="/userinfo/password">비밀번호 변경</a></td>
         </tr>
         <tr>
             <td>Delete Account</td>
             <td>
-<!--                <form method="get">-->
-<!--                    <button class="delete btn btn-primary" formaction="/delete" type="submit">Delete Account</button>-->
-<!--                </form>-->
-                <button class="delete-user btn btn-primary" type="button" th:onclick="|deleteUserClick();|">Delete Account</button>
+                <form class="delete-form" action="#" method="post" th:action="@{/user/{email}(email=${email})}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="delete btn btn-primary" th:onclick="|deleteUserClick();|" type="button">Delete Account</button>
+                </form>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<!--<script src="/js/userinfo.js"></script>-->
+<script src="/js/userinfo.js"></script>
 

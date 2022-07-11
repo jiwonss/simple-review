@@ -28,7 +28,7 @@ function editBtnClick(id) {
 	checkBtn.addEventListener("click", checkBtnClick);
 
 	function checkBtnClick() {
-		fetch(`http://localhost:8080/api/review/edit`, {
+		fetch(`http://localhost:8080/api/review`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",
@@ -59,7 +59,7 @@ function editBtnClick(id) {
 
 
 function delBtnClick(id) {
-	fetch(`http://localhost:8080/api/review/delete/${id}`, {
+	fetch(`http://localhost:8080/api/review/${id}`, {
 		method: "DELETE",
     })
 		.then((data) => console.log(data));
