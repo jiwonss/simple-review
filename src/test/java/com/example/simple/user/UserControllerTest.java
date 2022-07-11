@@ -56,8 +56,10 @@ public class UserControllerTest {
         String email = "test@a.com";
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/check")
+                MockMvcRequestBuilders.get("/user")
                         .queryParam("email", email)
+        ).andDo(
+                MockMvcResultHandlers.print()
         ).andExpect(
                 MockMvcResultMatchers.flash().attribute("message", "❌")
         ).andDo(
@@ -72,7 +74,7 @@ public class UserControllerTest {
         String email = "test1@a.com";
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/check")
+                MockMvcRequestBuilders.get("/user")
                         .queryParam("email", email)
         ).andExpect(
                 MockMvcResultMatchers.flash().attribute("message", "✔")
@@ -87,7 +89,7 @@ public class UserControllerTest {
     @DisplayName("[회원가입] 성공")
     public void signupSuccess() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/new")
+                MockMvcRequestBuilders.post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("email", "test1@a.com")
                         .param("password", "qwer!1234")
@@ -104,7 +106,7 @@ public class UserControllerTest {
     @DisplayName("[회원가입] 실패")
     public void signupFail() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/new")
+                MockMvcRequestBuilders.post("/user")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("email", "test1@a.com")
                         .param("password", "1234")
@@ -161,7 +163,7 @@ public class UserControllerTest {
     @DisplayName("[비밀번호 변경] 성공")
     public void changePasswordSuccess() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/change")
+                MockMvcRequestBuilders.put("/user/test@a.com")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("newPassword", "qwer!1234")
                         .param("newPasswordConfirm", "qwer!1234")
@@ -178,7 +180,7 @@ public class UserControllerTest {
     @DisplayName("[비밀번호 변경] 실패")
     public void changePasswordFail() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/change")
+                MockMvcRequestBuilders.put("/user/test@a.com")
                         .contentType(MediaType.APPLICATION_JSON)
                         .param("newPassword", "test!1234")
                         .param("newPasswordConfirm", "")
@@ -196,7 +198,7 @@ public class UserControllerTest {
     @DisplayName("[로그아웃] 성공")
     public void logoutSuccess() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/logout")
+                MockMvcRequestBuilders.get("/user/logout")
         ).andExpect(
                 MockMvcResultMatchers.redirectedUrl("/")
         ).andDo(
@@ -211,7 +213,9 @@ public class UserControllerTest {
     @DisplayName("[계정 삭제] 성공")
     public void deleteAccountSuccess() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/delete")
+                MockMvcRequestBuilders.delete("/user/test@a.com")
+        ).andDo(
+                MockMvcResultHandlers.print()
         ).andExpect(
                 MockMvcResultMatchers.flash().attribute("url", "/")
         ).andDo(

@@ -43,11 +43,6 @@ public class ReviewControllerTest {
     }
 
     @Test
-    public void hello() {
-        System.out.println("hello");
-    }
-
-    @Test
     @Transactional
     @WithUserDetails(value = "test@a.com")
     @DisplayName("[Review] Add")
@@ -59,7 +54,7 @@ public class ReviewControllerTest {
         String json = new ObjectMapper().writeValueAsString(reviewDto);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.post("/api/review/add")
+                MockMvcRequestBuilders.post("/api/review")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(
@@ -71,10 +66,13 @@ public class ReviewControllerTest {
 
     @Test
     @Transactional
+    @WithUserDetails("test@a.com")
     @DisplayName("[Review] Find All")
     public void findAllTest() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/review/all")
+                MockMvcRequestBuilders.get("/api/review")
+        ).andDo(
+                MockMvcResultHandlers.print()
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -84,31 +82,18 @@ public class ReviewControllerTest {
 
     @Test
     @Transactional
-    @DisplayName("[Review] Find All By User Id")
-    public void findAllByUserIdTest() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/review/all/user")
-                        .queryParam("id", "7")
-        ).andExpect(
-                MockMvcResultMatchers.status().isOk()
-        ).andDo(
-                MockMvcResultHandlers.print()
-        );
-    }
-
-    @Test
-    @Transactional
+    @WithUserDetails("test@a.com")
     @DisplayName("[Review] Edit")
     public void editTest() throws Exception {
         ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setId(39L);
+        reviewDto.setId(60L);
         reviewDto.setTitle("코롬방제과점");
         reviewDto.setContent("test 입니다.");
 
         String json = new ObjectMapper().writeValueAsString(reviewDto);
 
         mockMvc.perform(
-                MockMvcRequestBuilders.put("/api/review/edit")
+                MockMvcRequestBuilders.put("/api/review")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
         ).andExpect(
@@ -118,7 +103,7 @@ public class ReviewControllerTest {
         );
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/review/all")
+                MockMvcRequestBuilders.get("/api/review")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -128,14 +113,11 @@ public class ReviewControllerTest {
 
     @Test
     @Transactional
+    @WithUserDetails("test@a.com")
     @DisplayName("[Review] Delete")
     public void deleteTest() throws Exception {
-        ReviewDto reviewDto = new ReviewDto();
-        reviewDto.setTitle("코롬방제과점");
-        reviewDto.setContent("test 입니다.");
-
         mockMvc.perform(
-                MockMvcRequestBuilders.delete("/api/review/delete/39")
+                MockMvcRequestBuilders.delete("/api/review/60")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -143,7 +125,7 @@ public class ReviewControllerTest {
         );
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/review/all")
+                MockMvcRequestBuilders.get("/api/review")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(

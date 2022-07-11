@@ -21,6 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringBootTest
 @AutoConfigureWebMvc
@@ -38,23 +39,8 @@ public class RestaurantControllerTest {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(this.context)
                 .addFilters(new CharacterEncodingFilter("UTF-8", true)) // MockHttpServletResponse Body 한글 깨짐 문제 해결
-//                .apply(springSecurity())
+                .apply(springSecurity())
                 .build();
-    }
-
-    @Test
-    public void hello() {
-        System.out.println("hello");
-    }
-
-    @Test
-    @WithMockUser
-    public void helloController() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/restaurant/hello")
-        ).andDo(
-                MockMvcResultHandlers.print()
-        );
     }
 
     @Test
@@ -104,7 +90,7 @@ public class RestaurantControllerTest {
     @DisplayName("[Restaurant] Find All")
     public void findAllTest() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/restaurant/all")
+                MockMvcRequestBuilders.get("/api/restaurant")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -115,25 +101,10 @@ public class RestaurantControllerTest {
     @Test
     @Transactional
     @WithUserDetails("test@a.com")
-    @DisplayName("[Restaurant] Find All By User Id")
-    public void findAllByUserIdTest() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/restaurant/all/user")
-                        .queryParam("id", "7")
-        ).andExpect(
-                MockMvcResultMatchers.status().isOk()
-        ).andDo(
-                MockMvcResultHandlers.print()
-        );
-    }
-
-    @Test
-    @Transactional
-    @WithUserDetails("test2@a.com")
     @DisplayName("[Restaurant] Find All By User Email")
     public void findAllByUserEmailTest() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/restaurant/all/user/test2@a.com")
+                MockMvcRequestBuilders.get("/api/restaurant/test@a.com")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -147,7 +118,7 @@ public class RestaurantControllerTest {
     @DisplayName("[Restaurant] Delete")
     public void deleteTest() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.delete("/api/restaurant/delete/29")
+                MockMvcRequestBuilders.delete("/api/restaurant/63")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -161,7 +132,7 @@ public class RestaurantControllerTest {
     @DisplayName("[Restaurant] Add Visit Count")
     public void addVisitCountTest() throws Exception {
         mockMvc.perform(
-                MockMvcRequestBuilders.put("/api/restaurant/29")
+                MockMvcRequestBuilders.put("/api/restaurant/63")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -169,8 +140,7 @@ public class RestaurantControllerTest {
         );
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/restaurant/all/user")
-                        .queryParam("id", "7")
+                MockMvcRequestBuilders.get("/api/restaurant/test@a.com")
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
