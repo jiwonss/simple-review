@@ -22,31 +22,35 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
-    @PostMapping("/add")
+    // POST /api/review
+    @PostMapping
     public ReviewDto add(@AuthenticationPrincipal UserEntity userEntity,
                          @RequestBody @Valid ReviewDto reviewDto) {
         return reviewService.add(userEntity, reviewDto);
     }
 
-    @GetMapping("/all")
+    // GET /api/review
+    @GetMapping
     public List<ReviewDto> findAll() {
         return reviewService.findAll();
     }
 
-    @GetMapping("/all/user")
+    // GET /api/review/{id}
+    @GetMapping("/{id}")
     public List<ReviewDto> findAllByRestaurantId(@RequestParam Long id) {
         return reviewService.findAllByRestaurantId(id);
     }
 
-    @PutMapping("/edit")
+    // PUT /api/review
+    @PutMapping
     public void edit(@RequestBody @Valid ReviewDto reviewDto) {
        reviewService.edit(reviewDto);
     }
 
+    // DELETE /api/review/{id}
     @Transactional
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         reviewService.delete(id);
     }
-
 }

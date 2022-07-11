@@ -27,6 +27,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     private final UserService userService;
@@ -36,8 +37,8 @@ public class UserController {
         webDataBinder.addValidators(new PasswordValidator());
     }
 
-    // email 중복 확인
-    @GetMapping(value = "/check")
+    // GET /user?email={email}
+    @GetMapping
     public String emailDuplicateCheck(@RequestParam String email, RedirectAttributes redirectAttributes) {
         if (userService.existsByEmail(email)) {
             redirectAttributes.addFlashAttribute("message", "❌");
@@ -48,8 +49,8 @@ public class UserController {
         return "redirect:/signup";
     }
 
-    // 회원가입
-    @PostMapping(value = "/new")
+    // POST /user
+    @PostMapping
     public String signup(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(objectError -> {
@@ -66,16 +67,17 @@ public class UserController {
         return "redirect:/login";
     }
 
-    // 로그아웃
+    // GET /user/logout
     @GetMapping(value = "/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/";
     }
 
-    // 비밀번호 변경
-    @PostMapping(value = "/change")
-    public String changePassword(@AuthenticationPrincipal UserEntity userEntity,
+    // PUT /user/{email}
+    @PutMapping(value = "/{email}")
+    public String changePassword(@PathVariable String email,
+                                 @AuthenticationPrincipal UserEntity userEntity,
                                  @ModelAttribute @Valid PasswordDto passwordDto,
                                  Errors errors,
                                  RedirectAttributes redirectAttributes) {
@@ -93,12 +95,14 @@ public class UserController {
         userService.updatePassword(userEntity ,passwordDto.getNewPassword());
         log.info("{} 비밀번호 번경 성공", userEntity.getEmail(), userEntity.getPassword());
         redirectAttributes.addFlashAttribute("message", "Password를 변경하였습니다.");
-        return "redirect:/change/password";
+        return "redirect:/userinfo/password";
     }
 
-    // 회원탈퇴
-    @GetMapping(value = "/delete")
-    public String deleteUser(@AuthenticationPrincipal UserEntity userEntity, RedirectAttributes redirectAttributes) {
+    // DELETE /user/{email}
+    @DeleteMapping(value = "/{email}")
+    public String deleteUser(@PathVariable String email,
+                             @AuthenticationPrincipal UserEntity userEntity,
+                             RedirectAttributes redirectAttributes) {
         if (userService.deleteUser(userEntity.getEmail()) > 0) {
             redirectAttributes.addFlashAttribute("msg", "성공적으로 회원 정보를 삭제하였습니다.");
             redirectAttributes.addFlashAttribute("url", "/");
@@ -108,6 +112,6 @@ public class UserController {
             redirectAttributes.addFlashAttribute("url", "/userpage");
         }
 
-        return "redirect:/delete/account";
+        return "redirect:/userinfo/account";
     }
 }

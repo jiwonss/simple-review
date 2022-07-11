@@ -8,14 +8,14 @@ import com.example.simple.user.dto.PasswordDto;
 import com.example.simple.user.dto.UserDto;
 import com.example.simple.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -41,38 +41,14 @@ public class PageController {
         return new ModelAndView("signup");
     }
 
-    @GetMapping("/email-check")
-    public String emailCheck(Model model) {
-        model.addAttribute("emailCheck", true);
-        return "signup";
-    }
-
-    @GetMapping("/signup-error")
-    public String joinError(Model model) {
-        model.addAttribute("joinError", true);
-        return "signup";
-    }
-
     @GetMapping("/login")
     public ModelAndView login() {
         return new ModelAndView("login");
     }
 
-    @GetMapping("/login-error")
-    public String loginError(Model model) {
-        model.addAttribute("loginError", true);
-        return "login";
-    }
-
     @GetMapping("/access-denied")
     public String accessDenied() {
         return "AccessDenied";
-    }
-
-    @ResponseBody
-    @GetMapping("/auth")
-    public Authentication auth() {
-        return SecurityContextHolder.getContext().getAuthentication();
     }
 
     @GetMapping("/restaurant")
@@ -108,15 +84,15 @@ public class PageController {
         return "restaurant-list";
     }
 
-    @GetMapping("/write")
-    public ModelAndView write(@RequestParam String title, Model model) {
+    @GetMapping("/review")
+    public ModelAndView review(@RequestParam String title, Model model) {
         model.addAttribute(new ReviewDto());
         model.addAttribute("title", title);
         return new ModelAndView("review-write");
     }
 
-    @PostMapping("/write/check")
-    public String writeCheck(@AuthenticationPrincipal UserEntity userEntity,
+    @PostMapping("/review")
+    public String reviewCheck(@AuthenticationPrincipal UserEntity userEntity,
                              @Valid ReviewDto reviewDto,
                              Errors errors,
                              Model model) {
@@ -139,28 +115,25 @@ public class PageController {
         return new ModelAndView("review-list");
     }
 
-    @GetMapping("/index")
-    public ModelAndView index() {
-        return new ModelAndView("index");
-    }
-
     @GetMapping("/userpage")
     public ModelAndView userpage() {
         return new ModelAndView("userpage");
     }
 
     @GetMapping("/userinfo")
-    public ModelAndView userinfo() {
+    public ModelAndView userinfo(@AuthenticationPrincipal UserEntity userEntity, Model model) {
+        model.addAttribute("email", userEntity.getEmail());
         return new ModelAndView("userinfo");
     }
 
-    @GetMapping("/change/password")
-    public ModelAndView changePassword(Model model) {
+    @GetMapping("/userinfo/password")
+    public ModelAndView changePassword(@AuthenticationPrincipal UserEntity userEntity, Model model) {
         model.addAttribute(new PasswordDto());
+        model.addAttribute("email", userEntity.getEmail());
         return new ModelAndView("password-change");
     }
 
-    @GetMapping("/delete/account")
+    @GetMapping("/userinfo/account")
     public String deleteAccount(Model model) {
         model.addAttribute("deleteCheck", true);
         return "userpage";

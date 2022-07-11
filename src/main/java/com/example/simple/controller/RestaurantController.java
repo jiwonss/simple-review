@@ -16,41 +16,37 @@ public class RestaurantController {
 
     private final RestaurantService restaurantService;
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
-
+    // GET /api/restaurant/search?query={query}
     @GetMapping("/search")
     public RestaurantDto search(@RequestParam String query) {
         return restaurantService.search(query);
     }
 
-    @PostMapping("")
+    // POST /api/restaurant
+    @PostMapping
     public RestaurantDto add(@RequestBody RestaurantDto restaurantDto){
         return restaurantService.add(restaurantDto);
     }
 
-    @GetMapping("/all")
+    // GET /api/restaurant
+    @GetMapping
     public List<RestaurantDto> findAll() {
         return restaurantService.findAll();
     }
 
-    @GetMapping("/all/user")
-    public List<RestaurantDto> findAllByUserId(@RequestParam Long id) {
-        return restaurantService.findAllByUserId(id);
-    }
-
-    @GetMapping("/all/user/{email}")
+    // GET /api/restaurant/{email}
+    @GetMapping("/{email}")
     public List<RestaurantDto> findAllByUserEmail(@PathVariable String email) {
         return restaurantService.findAllByUserEmail(email);
     }
 
-    @DeleteMapping("/delete/{id}")
+    // DELETE /api/restaurant/{id}
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         restaurantService.delete(id);
     }
 
+    // PUT /api/restaurant/{id}
     @PutMapping("/{id}")
     public void addVisit(@PathVariable Long id){
         restaurantService.addVisit(id);
