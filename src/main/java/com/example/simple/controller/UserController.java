@@ -40,7 +40,7 @@ public class UserController {
     // GET /user?email={email}
     @GetMapping
     public String emailDuplicateCheck(@RequestParam String email, RedirectAttributes redirectAttributes) {
-        if (userService.existsByEmail(email)) {
+        if (email.isBlank() || userService.existsByEmail(email)) {
             redirectAttributes.addFlashAttribute("message", "❌");
             return "redirect:/signup";
         }
