@@ -47,7 +47,11 @@
   |:---:|---|
   |**목적**|Spring 공부 및 실습 내용 바탕으로 프로젝트 진행|
   |**설명**|간단한 리뷰 작성 및 관리 사이트|
-  |**개발환경**|Window10, IntelliJ, SpringBoot, Spring JPA, Spring Security, MySQL, Java, HTML, CSS, JavaScript, BootStrap, Thymeleaf|
+  |**개발환경**|Window10, IntelliJ, Java, Spring Boot, Spring Data JPA, Spring Security, MySQL|
+  ||HTML, CSS, JavaScript, BootStrap, Thymeleaf|
+  |**구현기능**|User : 회원가입, 이메일 중복 확인, 로그인, 로그아웃, 비밀번호 변경, 회원탈퇴|
+  ||Restaurant : 검색, 추가, 방문횟수 추가, 삭제|
+  ||Review : 작성, 수정, 삭제|
 
 </div>
 
