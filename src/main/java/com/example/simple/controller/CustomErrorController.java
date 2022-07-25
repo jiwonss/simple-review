@@ -28,8 +28,6 @@ public class CustomErrorController implements ErrorController {
 
         if (status.equals(HttpStatus.NOT_FOUND.value())) {
             return "/error/404";
-        } else if (status.equals(405)) {
-            return "/error/405";
         } else {
             return "/error/500";
         }

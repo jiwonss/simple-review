@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Insert title here</title>
-</head>
-<body>
-    <ul>
-        <li th:text="${'상태: ' + status}">상태
-        <li th:text="${'경로: ' + path}">경로
-        <li th:text="${'요청시각: ' + timestamp}">요청시각
-        <li th:text="${'예외 ' + exception}">예외
-        <li th:text="${'메시지: ' + message}">메시지
-    </ul>
-</body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+
+<th:block layout:fragment="content">
+    <header class="masthead text-center text-white vh-100">
+        <div class="masthead-content">
+            <div class="container px-5">
+                <h2 class="masthead-subheading mb-0">500</h2>
+                <h3 class="masthead-content mb-0">서비스에 접속할 수 없습니다.</h3>
+            </div>
+        </div>
+    </header>
+</th:block>
 </html>
