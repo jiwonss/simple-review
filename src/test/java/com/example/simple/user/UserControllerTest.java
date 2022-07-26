@@ -168,7 +168,7 @@ public class UserControllerTest {
                         .param("newPassword", "qwer!1234")
                         .param("newPasswordConfirm", "qwer!1234")
         ).andExpect(
-                MockMvcResultMatchers.redirectedUrl("/change/password")
+                MockMvcResultMatchers.view().name("password-change")
         ).andDo(
                 MockMvcResultHandlers.log()
         );

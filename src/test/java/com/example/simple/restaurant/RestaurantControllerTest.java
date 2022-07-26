@@ -2,6 +2,7 @@ package com.example.simple.restaurant;
 
 import com.example.simple.restaurant.dto.RestaurantDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -63,15 +65,15 @@ public class RestaurantControllerTest {
     @WithUserDetails(value = "test@a.com")
     @DisplayName("[Restaurant] Add")
     public void addTest() throws Exception {
-        RestaurantDto dto = new RestaurantDto();
-        dto.setTitle("카페");
-        dto.setCategory("음식점>카페");
-        dto.setAddress("");
-        dto.setRoadAddress("");
-        dto.setImageLink("");
-        dto.setHomePageLink("");
+        RestaurantDto restaurantDto = new RestaurantDto();
+        restaurantDto.setTitle("카페");
+        restaurantDto.setCategory("음식점>카페");
+        restaurantDto.setAddress("");
+        restaurantDto.setRoadAddress("");
+        restaurantDto.setImageLink("");
+        restaurantDto.setHomePageLink("");
 
-        String json = new ObjectMapper().writeValueAsString(dto);
+        String json = new ObjectMapper().writeValueAsString(restaurantDto);
 
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/api/restaurant")
@@ -117,8 +119,31 @@ public class RestaurantControllerTest {
     @WithUserDetails("test@a.com")
     @DisplayName("[Restaurant] Delete")
     public void deleteTest() throws Exception {
+        RestaurantDto restaurantDto = new RestaurantDto();
+        restaurantDto.setTitle("카페");
+        restaurantDto.setCategory("음식점>카페");
+        restaurantDto.setAddress("");
+        restaurantDto.setRoadAddress("");
+        restaurantDto.setImageLink("");
+        restaurantDto.setHomePageLink("");
+
+        String json = new ObjectMapper().writeValueAsString(restaurantDto);
+
+        MvcResult mvcResult = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/restaurant")
+                        .contentType(APPLICATION_JSON)
+                        .content(json)
+        ).andExpect(
+                MockMvcResultMatchers.status().isOk()
+        ).andDo(
+                MockMvcResultHandlers.print()
+        ).andReturn();
+
+        String response = mvcResult.getResponse().getContentAsString();
+        Integer id = JsonPath.parse(response).read("$.id");
+
         mockMvc.perform(
-                MockMvcRequestBuilders.delete("/api/restaurant/63")
+                MockMvcRequestBuilders.delete(String.format("/api/restaurant/%s", String.valueOf(id)))
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
@@ -131,16 +156,31 @@ public class RestaurantControllerTest {
     @WithUserDetails("test@a.com")
     @DisplayName("[Restaurant] Add Visit Count")
     public void addVisitCountTest() throws Exception {
-        mockMvc.perform(
-                MockMvcRequestBuilders.put("/api/restaurant/63")
+        RestaurantDto restaurantDto = new RestaurantDto();
+        restaurantDto.setTitle("카페");
+        restaurantDto.setCategory("음식점>카페");
+        restaurantDto.setAddress("");
+        restaurantDto.setRoadAddress("");
+        restaurantDto.setImageLink("");
+        restaurantDto.setHomePageLink("");
+
+        String json = new ObjectMapper().writeValueAsString(restaurantDto);
+
+        MvcResult mvcResult = mockMvc.perform(
+                MockMvcRequestBuilders.post("/api/restaurant")
+                        .contentType(APPLICATION_JSON)
+                        .content(json)
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
                 MockMvcResultHandlers.print()
-        );
+        ).andReturn();
+
+        String response = mvcResult.getResponse().getContentAsString();
+        Integer id = JsonPath.parse(response).read("$.id");
 
         mockMvc.perform(
-                MockMvcRequestBuilders.get("/api/restaurant/test@a.com")
+                MockMvcRequestBuilders.put(String.format("/api/restaurant/%s", String.valueOf(id)))
         ).andExpect(
                 MockMvcResultMatchers.status().isOk()
         ).andDo(
